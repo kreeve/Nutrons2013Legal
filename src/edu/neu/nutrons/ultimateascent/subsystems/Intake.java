@@ -4,6 +4,7 @@
  */
 package edu.neu.nutrons.ultimateascent.subsystems;
 
+import edu.neu.nutrons.ultimateascent.RobotMap;
 import edu.wpi.first.wpilibj.Talon;
 
 /**
@@ -12,7 +13,7 @@ import edu.wpi.first.wpilibj.Talon;
  */
 public class Intake extends OnOffSubsystem {
 
-    private Talon motor = new Talon(0);
+    private Talon motor = new Talon(RobotMap.INTAKE_MOTOR);
     private boolean intaking = false;
 
     protected void initOn() {

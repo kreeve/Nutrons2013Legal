@@ -2,7 +2,9 @@
 package edu.neu.nutrons.ultimateascent.subsystems;
 
 import edu.neu.nutrons.lib.Utils;
+import edu.neu.nutrons.ultimateascent.RobotMap;
 import edu.neu.nutrons.ultimateascent.commands.drivetrain.DTManualCmd;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -11,6 +13,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    private Talon leftMotor1 = new Talon(RobotMap.DRIVE_LEFT_MOTOR_1);
+    private Talon leftMotor2 = new Talon(RobotMap.DRIVE_LEFT_MOTOR_2);
+    private Talon rightMotor1 = new Talon(RobotMap.DRIVE_RIGHT_MOTOR_1);
+    private Talon rightMotor2 = new Talon(RobotMap.DRIVE_RIGHT_MOTOR_2);
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
