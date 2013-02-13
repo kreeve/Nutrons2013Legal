@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.Talon;
  *
  * @author NUTRONs
  */
-public class Intake extends OnOffSubsystem {
+public class Intake extends OnOffSubsystem
+{
 
     private Talon motor = new Talon(RobotMap.INTAKE_MOTOR);
     private boolean intaking = false;

@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.neu.nutrons.ultimateascent.OI;
 import edu.neu.nutrons.ultimateascent.subsystems.DriveTrain;
 import edu.neu.nutrons.ultimateascent.subsystems.OnOffSubsystem;
+import edu.neu.nutrons.ultimateascent.subsystems.PneumaticOnOffSubsystem;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -47,7 +48,7 @@ public abstract class CommandBase extends Command {
         // news. Don't move it.
         law = new Lawyer();
         oi = new OI();
-
+        
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(dt);
     }

@@ -13,6 +13,7 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_MOTOR_2 = 6;
     public static final int INTAKE_MOTOR = 4;
     public static final int ELAVATOR_MOTOR = 5;
+    public static final int COMPRESSOR_PORT = 1;
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
     // public static final int leftMotor = 1;
