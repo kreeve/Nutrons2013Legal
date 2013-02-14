@@ -30,7 +30,8 @@ public class Lawyer {
             }
         } else if(sys == CommandBase.intake) {
             if(on) {
-                return CommandBase.elevator.isOff() && CommandBase.magazine.isOff() && CommandBase.dropdown.isOn();
+              //  return CommandBase.elevator.isOff() && CommandBase.magazine.isOff() && CommandBase.dropdown.isOn();
+                return true;
             } else {
                 return true;
             }
@@ -60,6 +61,7 @@ public class Lawyer {
             }
         } else if(sys == CommandBase.shooter) {
             if(on) {
+                //returning true for testing purposes
                 return true;
             } else {
                 return true;

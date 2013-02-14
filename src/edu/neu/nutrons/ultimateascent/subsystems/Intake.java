@@ -40,7 +40,7 @@ public class Intake extends OnOffSubsystem
     }
 
     public boolean isOff() {
-        return intaking;
+        return !intaking;
     }
 
 }

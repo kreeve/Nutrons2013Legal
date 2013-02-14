@@ -18,6 +18,7 @@ public class DTManualCmd extends CommandBase {
 
     protected void execute() {
         // TODO: make the drive train go!
+        dt.driveTW(oi.getDriveThrottle(), oi.getDriveWheel());
     }
 
     protected boolean isFinished() {

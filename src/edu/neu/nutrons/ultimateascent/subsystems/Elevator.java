@@ -5,6 +5,7 @@
 package edu.neu.nutrons.ultimateascent.subsystems;
 
 import edu.neu.nutrons.ultimateascent.RobotMap;
+import edu.neu.nutrons.ultimateascent.commands.ElevatorManualCmd;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 
@@ -14,8 +15,12 @@ import edu.wpi.first.wpilibj.Talon;
  */
 public class Elevator extends OnOffSubsystem{
     private Talon motor1 = new Talon(RobotMap.ELAVATOR_MOTOR);
-    private DigitalInput upLimit = new DigitalInput(0);
-    private DigitalInput downLimit = new DigitalInput(0);
+    private DigitalInput upLimit = new DigitalInput(RobotMap.DIGITAL_UP);
+    private DigitalInput downLimit = new DigitalInput(RobotMap.DIGITAL_DOWN);
+    public void initDefaultCommand()
+    {
+        setDefaultCommand(new ElevatorManualCmd());
+    }
     protected void initOn() {
         if(!this.isOn())
         {
@@ -54,5 +59,9 @@ public class Elevator extends OnOffSubsystem{
     public void stop()
     {
         motor1.set(0);
+    }
+    public void manualControl(double power)
+    {
+        motor1.set(power);
     }
 }

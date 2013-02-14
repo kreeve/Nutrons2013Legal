@@ -24,7 +24,10 @@ public class DriveTrain extends Subsystem {
     }
 
     public void driveLR(double left, double right) {
-        // TODO: write me!
+        leftMotor1.set(left);
+        leftMotor2.set(left);
+        rightMotor1.set(right);
+        rightMotor2.set(right);
     }
 
     public void driveTW(double throttle, double wheel) {

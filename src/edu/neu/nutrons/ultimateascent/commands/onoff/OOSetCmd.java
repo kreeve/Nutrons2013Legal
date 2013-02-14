@@ -16,7 +16,7 @@ public class OOSetCmd extends CommandBase {
     public OOSetCmd(OnOffSubsystem sys, boolean on) {
         this.sys = sys;
         this.on = on;
-        requires(this.sys);
+        requires(sys);
     }
 
     protected void initialize() {
