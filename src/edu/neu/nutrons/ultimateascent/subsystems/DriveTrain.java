@@ -40,4 +40,8 @@ public class DriveTrain extends Subsystem {
     public void driveCheesy(double throttle, double wheel, boolean quickturn) {
         // TODO: write me! Or copy and paste me!
     }
+
+    public void stop() {
+        driveLR(0, 0);
+    }
 }
