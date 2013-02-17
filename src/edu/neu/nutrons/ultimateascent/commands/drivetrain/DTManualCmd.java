@@ -2,6 +2,7 @@
 package edu.neu.nutrons.ultimateascent.commands.drivetrain;
 
 import edu.neu.nutrons.ultimateascent.commands.CommandBase;
+import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
 
 /**
  *
@@ -17,8 +18,9 @@ public class DTManualCmd extends CommandBase {
     }
 
     protected void execute() {
-        // TODO: make the drive train go!
-        dt.driveTW(oi.getDriveThrottle(), oi.getDriveWheel());
+            // TODO: make the drive train go!
+            //dt.driveTW(oi.getDriveThrottle(), oi.getDriveWheel());
+        dt.driveLR(oi.getDriveThrottle(),oi.getDriveWheel());
     }
 
     protected boolean isFinished() {

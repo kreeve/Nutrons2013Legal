@@ -1,5 +1,7 @@
 package edu.neu.nutrons.lib;
 
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  * Boolean that returns true only after a string of consecutive trues.
  *
@@ -8,23 +10,23 @@ package edu.neu.nutrons.lib;
 public class DebouncedBoolean {
 
     // TODO: make this time-based instead of count-based.
-    private double initialTime = 0;
-    private double currentTime = 0;
     private double length = 0;
+    Timer time = new Timer();
     private boolean state = false;
 
     public DebouncedBoolean(double length) {
         this.length = length;
-        initialTime = System.currentTimeMillis();
-        currentTime = System.currentTimeMillis();
+        time.start();
     }
 
     public void feed(boolean in) {
+        System.out.println("Current timer: " + time.get());
+        double currentTime;
         if(state) {
-            state = in && state;
+            state = in;
         }
         else if(in) {
-            currentTime = System.currentTimeMillis() - initialTime;
+            currentTime = time.get();
             if(currentTime >= length) {
                 state = true;
             }
@@ -39,7 +41,7 @@ public class DebouncedBoolean {
     }
 
     public void reset() {
-        initialTime = System.currentTimeMillis();
-        currentTime = System.currentTimeMillis();
+        time.reset();
+        time.start();
     }
 }

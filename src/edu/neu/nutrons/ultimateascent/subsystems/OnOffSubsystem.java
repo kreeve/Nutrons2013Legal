@@ -1,8 +1,6 @@
 
 package edu.neu.nutrons.ultimateascent.subsystems;
 
-import edu.neu.nutrons.lib.Utils;
-import edu.neu.nutrons.ultimateascent.commands.drivetrain.DTManualCmd;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -10,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public abstract class OnOffSubsystem extends Subsystem {
 
-    protected boolean on;
+    private boolean on = false;
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -40,6 +38,11 @@ public abstract class OnOffSubsystem extends Subsystem {
     // when the subsystem is transitioning between two states ("in limbo").
     public boolean isLimbo() {
         return !(isOn() || isOff());
+    }
+
+    // Returns raw state.
+    public boolean rawState() {
+        return on;
     }
 
     // Some default implementation for use by commands.

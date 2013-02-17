@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    private double tSens = 1;
+    private final double HIGH_GEAR_T_SENS = 1.5;
+    private final double LOW_GEAR_T_SENS = 1.3;
     private Talon leftMotor1 = new Talon(RobotMap.DRIVE_LEFT_MOTOR_1);
     private Talon leftMotor2 = new Talon(RobotMap.DRIVE_LEFT_MOTOR_2);
     private Talon rightMotor1 = new Talon(RobotMap.DRIVE_RIGHT_MOTOR_1);
@@ -22,10 +25,17 @@ public class DriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         setDefaultCommand(new DTManualCmd());
     }
-
+     public void setTSens(boolean highGear) {
+        if(highGear) {
+            tSens = HIGH_GEAR_T_SENS;
+        }
+        else {
+            tSens = LOW_GEAR_T_SENS;
+        }
+    }
     public void driveLR(double left, double right) {
-        leftMotor1.set(left);
-        leftMotor2.set(left);
+        leftMotor1.set(-left);
+        leftMotor2.set(-left);
         rightMotor1.set(right);
         rightMotor2.set(right);
     }
@@ -37,8 +47,43 @@ public class DriveTrain extends Subsystem {
         driveLR(throttle-wheel, throttle+wheel);
     }
 
-    public void driveCheesy(double throttle, double wheel, boolean quickturn) {
-        // TODO: write me! Or copy and paste me!
+       public void driveCheesy(double throttle, double wheel, boolean quickTurn) {
+        // Variables.
+        double angularPower;
+        double overPower;
+        double rPower;
+        double lPower;
+
+        // start turning if quickturn button is pressed.
+        if(quickTurn) {
+            overPower = 1.0;
+            angularPower = wheel;
+        }
+        else {
+            overPower = 0.0;
+            angularPower = Math.abs(throttle) * wheel * tSens;
+        }
+        rPower = throttle;
+        lPower = throttle;
+        lPower += angularPower;
+        rPower -= angularPower;
+        if(lPower > 1.0) {
+           rPower -= overPower * (lPower - 1.0);
+           lPower = 1.0;
+        }
+        else if(rPower > 1.0) {
+          lPower -= overPower * (rPower - 1.0);
+          rPower = 1.0;
+        }
+        else if(lPower < -1.0) {
+            rPower += overPower * (-1.0 - rPower);
+            lPower = -1.0;
+        }
+        else if (rPower < -1.0) {
+            lPower += overPower * (-1.0 - rPower);
+            rPower = -1.0;
+        }
+        driveLR(lPower, rPower);
     }
 
     public void stop() {

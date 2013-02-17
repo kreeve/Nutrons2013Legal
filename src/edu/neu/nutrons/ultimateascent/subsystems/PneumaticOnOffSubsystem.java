@@ -6,7 +6,6 @@ package edu.neu.nutrons.ultimateascent.subsystems;
 
 import edu.neu.nutrons.lib.DebouncedBoolean;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
@@ -17,15 +16,16 @@ public class PneumaticOnOffSubsystem extends OnOffSubsystem {
     double limboTime;
     boolean onState;
     protected Solenoid piston;
-    protected DebouncedBoolean delay;
+    protected DebouncedBoolean delayOn;
+    protected DebouncedBoolean delayOff;
     // boolean on is inherited from OnOffSubsystem.
     public PneumaticOnOffSubsystem(int port, boolean onState, double limboTime) {
         // Make the solenoid.
         this.onState = onState;
         this.limboTime = limboTime;
-        this.on = false;
         this.piston = new Solenoid(port);
-        this.delay = new DebouncedBoolean(this.limboTime);
+        this.delayOn = new DebouncedBoolean(this.limboTime);
+        this.delayOff = new DebouncedBoolean(this.limboTime);
     }
 
     protected void initOn() {
@@ -42,32 +42,24 @@ public class PneumaticOnOffSubsystem extends OnOffSubsystem {
     }
 
     protected void execOn() {
-        delay.feed(true);
+        delayOn.feed(true);
+        delayOff.feed(true);
         // Intentionally empty.
     }
 
     protected void execOff() {
-        delay.feed(false);
+        delayOn.feed(false);
+        delayOff.feed(true);
         // Intentionally empty.
     }
 
     // You'll want two debounced booleans: one for on, one for off.
     // Debounced boolean exists in 2012.
     public boolean isOn() {
-        // Use a "debounced" boolean here. (Only true if it's been true for
-        // a certain amount of time, like limboTime.)
-        return delay.get();
-        //I don't like red
+        return delayOn.get();
     }
 
     public boolean isOff() {
-        // Use a "debounced" boolean here. (Only true if it's been true for
-        // a certain amount of time, like limboTime.)
-        // There's an implementation in 2012, but it's based on number of calls,
-        // not elapsed time.
-        // You want the false side deounced here, so it'll maybe look like this:
-        // offDebounced.feed(!on);
-        // return !offDebounced.get();
-        return !delay.get();
+        return delayOff.get();
     }
 }

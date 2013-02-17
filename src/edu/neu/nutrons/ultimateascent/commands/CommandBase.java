@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.neu.nutrons.ultimateascent.OI;
 import edu.neu.nutrons.ultimateascent.RobotMap;
 import edu.neu.nutrons.ultimateascent.subsystems.*;
+import edu.wpi.first.wpilibj.DriverStationLCD;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -19,55 +20,66 @@ public abstract class CommandBase extends Command {
     // Create a single static instance of all of your subsystems
     public static DriveTrain dt = new DriveTrain();
     public static OnOffSubsystem dropdown;
-    public static OnOffSubsystem intake;
-    public static OnOffSubsystem centerer;
+    public static Intake intake;
     public static OnOffSubsystem magazine;
     public static OnOffSubsystem bolt;
     public static OnOffSubsystem barrel; // whether the shooter is up or down
-   // public static OnOffSubsystem elevator;
+    public static OnOffSubsystem climber;
+    public static OnOffSubsystem elevator;
     public static OnOffSubsystem shooter; // the actual wheels
+    public static OnOffSubsystem ddRoller;
     public static Lawyer law;
 
+    private static String stateStr(OnOffSubsystem sys) {
+        if(sys.isOn()) {
+            return "ON ";
+        } else if(sys.isOff()) {
+            return "OFF";
+        } else {
+            return "?  ";
+        }
+    }
 
-    public static Elevator elevator = new Elevator();
     public static void handleSubsystems() {
-        /*
         dropdown.exec();
-        centerer.exec();
         magazine.exec();
         bolt.exec();
         barrel.exec();
-        */
-
-
-        //elevator.exec();
+        climber.exec();
+        ddRoller.exec();
+        elevator.exec();
         shooter.exec();
         intake.exec();
+        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1,
+                "ele " + stateStr(elevator) + "  mag " + stateStr(magazine));
+        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser3, 1,
+                "bar " + stateStr(barrel) + "  dro " + stateStr(dropdown));
     }
 
     public static void init() {
+
+
+        // Non-pneumatic subsystems.
+        shooter = new Shooter();
+        elevator = new Elevator();
+        System.out.println("ABOUT TO INSTANTIATE");
+        intake = new Intake();
+        ddRoller = new DDRoller();
+
+        // PneumaticOnOffSubsystems
+        dropdown = new PneumaticOnOffSubsystem(RobotMap.DROPDOWN, false, 500);
+        magazine = new PneumaticOnOffSubsystem(RobotMap.MAGAZINE, true, 2000);
+        barrel = new PneumaticOnOffSubsystem(RobotMap.BARREL, false, 5000);
+        bolt = new PneumaticOnOffSubsystem(RobotMap.BOLT, false, 500);
+        climber = new PneumaticOnOffSubsystem(RobotMap.CLIMBER, false, 500);
+
+        law = new Lawyer();
+
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
         // which commands extend), subsystems are not guaranteed to be
         // yet. Thus, their requires() statements may grab null pointers. Bad
         // news. Don't move it.
-
-
-        // Non-pneumatic subsystems.
-        shooter = new Shooter();
-        //elevator = new Elevator();
-        System.out.println("ABOUT TO INSTANTIATE");
-        intake = new Intake();
-
-
-        /* PneumaticOnOffSubsystems
-        dropdown = new PneumaticOnOffSubsystem(RobotMap.DROPDOWN, false, 500);
-        centerer = new PneumaticOnOffSubsystem(RobotMap.CENTERER, false, 500);
-        magazine = new PneumaticOnOffSubsystem(RobotMap.MAGAZINE, false, 500);
-        barrel = new PneumaticOnOffSubsystem(RobotMap.BARREL, false, 500);
-        bolt = new PneumaticOnOffSubsystem(RobotMap.BOLT, false, 500);
-        */
-        law = new Lawyer();
         oi = new OI();
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(dt);

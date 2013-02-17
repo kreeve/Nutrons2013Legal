@@ -3,8 +3,17 @@ package edu.neu.nutrons.ultimateascent;
 
 import edu.neu.nutrons.lib.Utils;
 import edu.neu.nutrons.ultimateascent.commands.CommandBase;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOffCmd;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
+import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous;
+import edu.neu.nutrons.ultimateascent.commands.intake.DDIntakeCmd;
+import edu.neu.nutrons.ultimateascent.commands.intake.DDIntakeStopCmd;
+import edu.neu.nutrons.ultimateascent.commands.intake.IntakeFrisbeeCmd;
+import edu.neu.nutrons.ultimateascent.commands.intake.IntakeSpitCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOFFCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetONCmd;
+import edu.neu.nutrons.ultimateascent.commands.shooter.ShooterAimHighCmd;
+import edu.neu.nutrons.ultimateascent.commands.shooter.ShooterFireCmd;
+import edu.neu.nutrons.ultimateascent.commands.shooter.ShooterAimLowCmd;
+import edu.neu.nutrons.ultimateascent.commands.shooter.ShooterHoldFireCmd;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.Joystick;
@@ -25,43 +34,36 @@ public class OI {
 
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
     private Joystick opPad = new Joystick(1);
-    private Button intakeOn = new JoystickButton(opPad, 1);
-    private Button intakeOff = new JoystickButton(opPad, 2);
-    // private Button elevatorUp = new JoystickButton(opPad, 3);
-    // private Button elevatorDown = new JoystickButton(opPad, 4);
-    private Button shooterOn = new JoystickButton(opPad, 5);
-    private Button shooterOff = new JoystickButton(opPad, 6);
-    private Button boltOn = new JoystickButton(opPad, 7);
-    private Button boltOff = new JoystickButton(opPad, 8);
-    private Button magazineUp = new JoystickButton(opPad, 9);
-    private Button magazineDown = new JoystickButton(opPad, 10);
-    private Button shooterUp = new JoystickButton(opPad, 3);
-    private Button shooterDown = new JoystickButton(opPad, 4);
-    private Button dropIntake = new JoystickButton(opPad, 11);
-    private Button raiseIntake = new JoystickButton(opPad, 12);
+    //aim and shoot buttons
+    private Button readyAimLow = new JoystickButton(opPad, 2);
+    private Button readyAimHigh = new JoystickButton(opPad, 3);
+    private Button fireFrisbee = new JoystickButton(opPad, 6);
+    private Button holdFire = new JoystickButton(opPad, 10);
+    //intake buttons
+    private Button intake = new JoystickButton(opPad, 5);
+    private Button ddIntake = new JoystickButton(opPad,7);
+    private Button spit = new JoystickButton(opPad, 8);
+    private Button raiseClimber = new JoystickButton(opPad, 1);
+    private Button chinUp = new JoystickButton(opPad, 4);
+    private Button retract = new JoystickButton(opPad, 9);
 
     public OI()
     {
-         intakeOn.whenPressed(new OOSetOnCmd(CommandBase.intake));
-         intakeOff.whenPressed(new OOSetOffCmd(CommandBase.intake));
-
-        // elevatorUp.whenPressed(new OOSetOnCmd(CommandBase.elevator));
-        // elevatorDown.whenPressed(new OOSetOffCmd(CommandBase.elevator));
-
-        shooterOn.whenPressed(new OOSetOnCmd(CommandBase.shooter));
-        shooterDown.whenPressed(new OOSetOffCmd(CommandBase.shooter));
-
-        // boltOn.whenPressed(new OOSetOnCmd(CommandBase.bolt));
-        // boltOff.whenPressed(new OOSetOffCmd(CommandBase.bolt));
-
-        // magazineUp.whenPressed(new OOSetOnCmd(CommandBase.magazine));
-        // magazineDown.whenPressed(new OOSetOffCmd(CommandBase.magazine));
-
-        // shooterUp.whenPressed(new OOSetOnCmd(CommandBase.barrel));
-        // shooterDown.whenPressed(new OOSetOffCmd(CommandBase.barrel));
-
-        // dropIntake.whenPressed(new OOSetOnCmd(CommandBase.dropdown));
-        // raiseIntake.whenPressed(new OOSetOffCmd(CommandBase.dropdown));
+        //aim and fire
+        readyAimLow.whenPressed(new ShooterAimLowCmd());
+        readyAimHigh.whenPressed(new ShooterAimHighCmd());
+        fireFrisbee.whenPressed(new ShooterFireCmd());
+        //retract.whenPressed(new OOSetOffCmd(CommandBase.bolt));
+        //intake commands
+        intake.whileHeld(new IntakeFrisbeeCmd());
+        intake.whenReleased(new OOSetOFFCmd(CommandBase.intake));
+        spit.whileHeld(new IntakeSpitCmd());
+        ddIntake.whileHeld(new DDIntakeCmd());
+        ddIntake.whenReleased(new DDIntakeStopCmd());
+        //climb
+        raiseClimber.whenPressed(new OOSetONCmd(CommandBase.climber));
+        chinUp.whenPressed(new OOSetOFFCmd(CommandBase.climber));
+        holdFire.whenPressed(new ShooterHoldFireCmd());
     }
     public double manElevator()
     {
@@ -113,4 +115,15 @@ public class OI {
         return getIODigital(DRIVE_QUICK_TURN);
     }
 
+    public int getAutoMode() {
+        if(opPad.getRawButton(2)) {
+            return Autonomous.THREE_DISC;
+        } else if(opPad.getRawButton(3)) {
+            return Autonomous.FIVE_DISC;
+        } else if(opPad.getRawButton(4)) {
+            return Autonomous.SEVEN_DISC;
+        } else {
+            return Autonomous.NONE;
+        }
+    }
 }

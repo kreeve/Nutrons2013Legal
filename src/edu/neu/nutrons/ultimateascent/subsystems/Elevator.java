@@ -5,63 +5,67 @@
 package edu.neu.nutrons.ultimateascent.subsystems;
 
 import edu.neu.nutrons.ultimateascent.RobotMap;
-import edu.neu.nutrons.ultimateascent.commands.ElevatorManualCmd;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 
 /**
  *
  * @author NUTRONs
  */
 public class Elevator extends OnOffSubsystem{
-    private Talon motor1 = new Talon(RobotMap.ELAVATOR_MOTOR);
-    private DigitalInput upLimit = new DigitalInput(RobotMap.DIGITAL_UP);
-    private DigitalInput downLimit = new DigitalInput(RobotMap.DIGITAL_DOWN);
+    private Victor motor1;
+    private DigitalInput upLimit;
+    private DigitalInput downLimit;
+    public Elevator()
+    {
+        motor1 = new Victor(RobotMap.ELAVATOR_MOTOR);
+        upLimit = new DigitalInput(RobotMap.DIGITAL_UP);
+        downLimit = new DigitalInput(RobotMap.DIGITAL_DOWN);
+    }
+
+    private void set(double power) {
+        motor1.set(power);
+    }
+
     public void initDefaultCommand()
     {
-        setDefaultCommand(new ElevatorManualCmd());
+       // setDefaultCommand(new ElevatorManualCmd());
     }
     protected void initOn() {
-        if(!this.isOn())
-        {
-            motor1.set(1);
-        }
     }
 
     protected void initOff() {
-        if(!this.isOff())
-        {
-            motor1.set(-1);
-        }
     }
 
     protected void execOn() {
-          if(!this.isOn())
+        if(upLimit.get())
         {
-            motor1.set(1);
+            set(0.3);
+        } else {
+            set(0.5);
         }
     }
 
     protected void execOff() {
-          if(!this.isOff())
+        if(downLimit.get())
         {
-            motor1.set(-1);
+            motor1.set(0);
+        } else {
+            motor1.set(-0.5);
         }
     }
 
     public boolean isOn() {
-        return upLimit.get();
+        return !upLimit.get();
     }
 
     public boolean isOff() {
-        return downLimit.get();
+        return !downLimit.get();
     }
-    public void stop()
-    {
+    public void stop() {
         motor1.set(0);
     }
-    public void manualControl(double power)
-    {
+    public void manualControl(double power) {
         motor1.set(power);
     }
 }

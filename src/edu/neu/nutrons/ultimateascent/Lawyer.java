@@ -14,13 +14,17 @@ import edu.neu.nutrons.ultimateascent.subsystems.OnOffSubsystem;
 public class Lawyer {
 
     public boolean legalToSet(OnOffSubsystem sys, boolean on) {
+        return true;
         // TODO: write me!
         // Replace the nulls with subsystems and the trues with actual logic.
+        /*
         if(sys == CommandBase.elevator) {
             if(on) {
-                return CommandBase.magazine.isOn() && CommandBase.intake.isOff();
+               // return CommandBase.magazine.isOn() && CommandBase.intake.isOff();
+                return true;
             } else {
-                return CommandBase.magazine.isOff();
+               // return CommandBase.magazine.isOff();
+                return true;
             }
         } else if(sys == CommandBase.dropdown) {
             if(on) {
@@ -37,25 +41,19 @@ public class Lawyer {
             }
         } else if(sys == CommandBase.magazine) {
             if(on) {
-                return CommandBase.intake.isOff();
+                return true;
             } else {
                 return true;
             }
-        } else if(sys == CommandBase.centerer) {
-            if(on) {
-                return CommandBase.magazine.isOn();
-            } else {
-                return false;
-            }
         } else if(sys == CommandBase.bolt) {
             if(on) {
-                return CommandBase.magazine.isOn() && CommandBase.shooter.isOn();
+                return true;
             } else {
-                return false;
+                return true;
             }
         } else if(sys == CommandBase.barrel) {
             if(on) {
-                return CommandBase.magazine.isOn();
+                return true;
             } else {
                 return true;
             }
@@ -69,5 +67,6 @@ public class Lawyer {
         } else {
             return true; // Make it so that this case is never reached!
         }
+        */
     }
 }

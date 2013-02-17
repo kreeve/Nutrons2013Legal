@@ -13,7 +13,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.neu.nutrons.ultimateascent.commands.CommandBase;
+import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous;
 import edu.neu.nutrons.ultimateascent.commands.drivetrain.DTManualCmd;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStationLCD;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,22 +27,31 @@ import edu.neu.nutrons.ultimateascent.commands.drivetrain.DTManualCmd;
  */
 public class Nutrons2013Legal extends IterativeRobot {
 
-    Command autonomousCommand;
-
+    private Command autonomousCommand;
+    private int autonomousMode = Autonomous.NONE;
+    private Compressor comp = new Compressor(RobotMap.AIR_PRESSURE, RobotMap.COMPRESSOR_PORT);
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-        // instantiate the command used for the autonomous period
-        autonomousCommand = new DTManualCmd();
-
+       // comp.start();
         // Initialize all subsystems
         CommandBase.init();
     }
 
+    public void disabledPeriodic() {
+        int oiAutoMode = CommandBase.oi.getAutoMode();
+        if(oiAutoMode != Autonomous.NONE && oiAutoMode != autonomousMode) {
+            autonomousMode = oiAutoMode;
+            DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1,
+                    "Auto: " + autonomousMode + "             ");
+        }
+    }
+
     public void autonomousInit()
     {
+        autonomousCommand = new Autonomous(autonomousMode);
         // schedule the autonomous command (example)
         autonomousCommand.start();
     }
@@ -59,8 +71,13 @@ public class Nutrons2013Legal extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
-    }
+        comp.start();
 
+    }
+    public void testInit()
+    {
+        comp.start();
+    }
     /**
      * This function is called periodically during operator control
      */
@@ -74,5 +91,9 @@ public class Nutrons2013Legal extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    public void disabledInit()
+    {
+        comp.stop();
     }
 }

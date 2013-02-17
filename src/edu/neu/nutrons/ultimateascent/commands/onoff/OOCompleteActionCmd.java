@@ -2,32 +2,38 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.neu.nutrons.ultimateascent.commands;
+package edu.neu.nutrons.ultimateascent.commands.onoff;
+
+import edu.neu.nutrons.ultimateascent.commands.CommandBase;
+import edu.neu.nutrons.ultimateascent.subsystems.OnOffSubsystem;
 
 /**
  *
  * @author NUTRONs
  */
-public class ElevatorManualCmd extends CommandBase {
-
-    public ElevatorManualCmd() {
-        requires(elevator);
+public class OOCompleteActionCmd extends CommandBase {
+    private OnOffSubsystem sys;
+    private boolean state;
+    public OOCompleteActionCmd(OnOffSubsystem sys, boolean state) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        this.sys = sys;
+        this.state = state;
+        requires(sys);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        sys.init(state);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-      // elevator.manualControl(oi.manElevator());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return sys.is(state);
     }
 
     // Called once after isFinished returns true
