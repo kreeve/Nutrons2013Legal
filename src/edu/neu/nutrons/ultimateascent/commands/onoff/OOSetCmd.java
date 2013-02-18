@@ -10,19 +10,27 @@ import edu.neu.nutrons.ultimateascent.subsystems.OnOffSubsystem;
 public class OOSetCmd extends CommandBase {
 
     private OnOffSubsystem sys;
-    private boolean on;
+    private boolean state;
     private boolean legal = false;
 
-    public OOSetCmd(OnOffSubsystem sys, boolean on) {
+    public OOSetCmd(OnOffSubsystem sys, boolean state) {
         this.sys = sys;
-        this.on = on;
+        this.state = state;
         requires(sys);
     }
 
+    protected OnOffSubsystem getSys() {
+        return sys;
+    }
+
+    protected boolean getState() {
+        return state;
+    }
+
     protected void initialize() {
-        legal = CommandBase.law.legalToSet(sys, on);
+        legal = CommandBase.law.legalToSet(sys, state);
         if(legal) {
-            sys.init(on);
+            sys.init(state);
         }
     }
 

@@ -2,18 +2,10 @@
 package edu.neu.nutrons.ultimateascent;
 
 import edu.neu.nutrons.lib.Utils;
-import edu.neu.nutrons.ultimateascent.commands.CommandBase;
+import edu.neu.nutrons.ultimateascent.commands.*;
 import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous;
-import edu.neu.nutrons.ultimateascent.commands.intake.DDIntakeCmd;
-import edu.neu.nutrons.ultimateascent.commands.intake.DDIntakeStopCmd;
-import edu.neu.nutrons.ultimateascent.commands.intake.IntakeFrisbeeCmd;
-import edu.neu.nutrons.ultimateascent.commands.intake.IntakeSpitCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOFFCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetONCmd;
-import edu.neu.nutrons.ultimateascent.commands.shooter.ShooterAimHighCmd;
-import edu.neu.nutrons.ultimateascent.commands.shooter.ShooterFireCmd;
-import edu.neu.nutrons.ultimateascent.commands.shooter.ShooterAimLowCmd;
-import edu.neu.nutrons.ultimateascent.commands.shooter.ShooterHoldFireCmd;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.Joystick;
@@ -35,35 +27,34 @@ public class OI {
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
     private Joystick opPad = new Joystick(1);
     //aim and shoot buttons
-    private Button readyAimLow = new JoystickButton(opPad, 2);
-    private Button readyAimHigh = new JoystickButton(opPad, 3);
+    private Button activateShooterHigh = new JoystickButton(opPad, 4);
+    private Button activateShooterLow = new JoystickButton(opPad, 3);
+    private Button deactivateShooter = new JoystickButton(opPad, 2);
     private Button fireFrisbee = new JoystickButton(opPad, 6);
-    private Button holdFire = new JoystickButton(opPad, 10);
     //intake buttons
-    private Button intake = new JoystickButton(opPad, 5);
-    private Button ddIntake = new JoystickButton(opPad,7);
+    private Button ddIntake = new JoystickButton(opPad, 5);
+    private Button intake = new JoystickButton(opPad, 7);
     private Button spit = new JoystickButton(opPad, 8);
-    private Button raiseClimber = new JoystickButton(opPad, 1);
-    private Button chinUp = new JoystickButton(opPad, 4);
-    private Button retract = new JoystickButton(opPad, 9);
+    //hanger
+    private Button hangerUp = new JoystickButton(opPad, 9);
+    private Button hangerDown = new JoystickButton(opPad, 10);
 
     public OI()
     {
         //aim and fire
-        readyAimLow.whenPressed(new ShooterAimLowCmd());
-        readyAimHigh.whenPressed(new ShooterAimHighCmd());
+        activateShooterHigh.whenPressed(new ActivateShooterHighCmd());
+        activateShooterLow.whenPressed(new ActivateShooterLowCmd());
+        deactivateShooter.whenPressed(new DeactivateShooterCmd());
         fireFrisbee.whenPressed(new ShooterFireCmd());
-        //retract.whenPressed(new OOSetOffCmd(CommandBase.bolt));
-        //intake commands
-        intake.whileHeld(new IntakeFrisbeeCmd());
-        intake.whenReleased(new OOSetOFFCmd(CommandBase.intake));
+        //intake
+        intake.whenPressed(new ActivateIntakeCmd());
+        intake.whenReleased(new DeactivateIntakeCmd());
+        ddIntake.whenPressed(new ActivateIntakeDropdownCmd());
+        ddIntake.whenReleased(new DeactivateIntakeCmd());
         spit.whileHeld(new IntakeSpitCmd());
-        ddIntake.whileHeld(new DDIntakeCmd());
-        ddIntake.whenReleased(new DDIntakeStopCmd());
-        //climb
-        raiseClimber.whenPressed(new OOSetONCmd(CommandBase.climber));
-        chinUp.whenPressed(new OOSetOFFCmd(CommandBase.climber));
-        holdFire.whenPressed(new ShooterHoldFireCmd());
+        //climbing
+        hangerUp.whenPressed(new OOSetONCmd(CommandBase.climber));
+        hangerDown.whenPressed(new OOSetOFFCmd(CommandBase.climber));
     }
     public double manElevator()
     {
@@ -71,7 +62,7 @@ public class OI {
     }
     private double capAndBand(double value) {
         value = Utils.deadband(value, .075, -1);
-        value = Utils.deadband(value, .075, 0);
+        value = Utils.deadband(value, .15, 0);
         value = Utils.deadband(value, .075, 1);
         return Utils.limit(value, -1, 1);
     }

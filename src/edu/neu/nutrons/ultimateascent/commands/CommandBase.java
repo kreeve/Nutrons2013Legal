@@ -50,10 +50,8 @@ public abstract class CommandBase extends Command {
         elevator.exec();
         shooter.exec();
         intake.exec();
-        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1,
-                "ele " + stateStr(elevator) + "  mag " + stateStr(magazine));
-        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser3, 1,
-                "bar " + stateStr(barrel) + "  dro " + stateStr(dropdown));
+        System.out.println("ele " + stateStr(elevator) + "  mag " + stateStr(magazine)
+                + "bar " + stateStr(barrel) + "  dro " + stateStr(dropdown));
     }
 
     public static void init() {
@@ -67,11 +65,11 @@ public abstract class CommandBase extends Command {
         ddRoller = new DDRoller();
 
         // PneumaticOnOffSubsystems
-        dropdown = new PneumaticOnOffSubsystem(RobotMap.DROPDOWN, false, 500);
-        magazine = new PneumaticOnOffSubsystem(RobotMap.MAGAZINE, true, 2000);
-        barrel = new PneumaticOnOffSubsystem(RobotMap.BARREL, false, 5000);
-        bolt = new PneumaticOnOffSubsystem(RobotMap.BOLT, false, 500);
-        climber = new PneumaticOnOffSubsystem(RobotMap.CLIMBER, false, 500);
+        dropdown = new PneumaticOnOffSubsystem(RobotMap.DROPDOWN, true, .5);
+        magazine = new PneumaticOnOffSubsystem(RobotMap.MAGAZINE, false, 1, .5);
+        barrel = new PneumaticOnOffSubsystem(RobotMap.BARREL, false, .5);
+        bolt = new PneumaticOnOffSubsystem(RobotMap.BOLT, true, .25);
+        climber = new PneumaticOnOffSubsystem(RobotMap.CLIMBER, true, .5);
 
         law = new Lawyer();
 

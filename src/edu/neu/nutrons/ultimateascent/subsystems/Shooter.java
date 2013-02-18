@@ -20,7 +20,7 @@ public class Shooter extends OnOffSubsystem {
     private DebouncedBoolean spinUpTime = new DebouncedBoolean(500);
     private final double SHOOTER_POWER = 1.0;
 
-    private void set(double power) {
+    private void setPower(double power) {
         // Don't shoot backwards!
         power = Utils.limit(power, 0, 1);
         sMotor1.set(-power);
@@ -35,12 +35,12 @@ public class Shooter extends OnOffSubsystem {
 
     protected void execOn() {
         spinUpTime.feed(true);
-        set(SHOOTER_POWER);
+        setPower(SHOOTER_POWER);
     }
 
     protected void execOff() {
         spinUpTime.feed(false);
-        set(0);
+        setPower(0);
     }
 
     public boolean isOn() {

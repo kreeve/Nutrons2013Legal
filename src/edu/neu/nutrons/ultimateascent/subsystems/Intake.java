@@ -15,30 +15,31 @@ public class Intake extends OnOffSubsystem {
 
     private Talon motor = new Talon(RobotMap.INTAKE_MOTOR);
 
+    private void setPower(double power) {
+        motor.set(power);
+    }
+
     protected void initOn() {
-        motor.set(1);
     }
 
     protected void initOff() {
-        motor.set(0);
     }
 
-    public void reverse()
-    {
-        motor.set(-1);
+    public void spit() {
+        setPower(-1);
     }
 
     public void stop()
     {
-        motor.set(0);
+        setPower(0);
     }
 
     protected void execOn() {
-        motor.set(1);
+        setPower(1);
     }
 
     protected void execOff() {
-        motor.set(0);
+        setPower(0);
     }
 
     public boolean isOn() {

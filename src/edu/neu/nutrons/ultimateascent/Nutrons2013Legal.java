@@ -38,14 +38,16 @@ public class Nutrons2013Legal extends IterativeRobot {
        // comp.start();
         // Initialize all subsystems
         CommandBase.init();
+        autonomousCommand = new Autonomous(Autonomous.THREE_DISC);
     }
 
     public void disabledPeriodic() {
         int oiAutoMode = CommandBase.oi.getAutoMode();
         if(oiAutoMode != Autonomous.NONE && oiAutoMode != autonomousMode) {
             autonomousMode = oiAutoMode;
-            DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1,
+            DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1,
                     "Auto: " + autonomousMode + "             ");
+            System.out.println("Auto: " + autonomousMode);
         }
     }
 
@@ -94,6 +96,7 @@ public class Nutrons2013Legal extends IterativeRobot {
     }
     public void disabledInit()
     {
+        System.out.println("disabled");
         comp.stop();
     }
 }

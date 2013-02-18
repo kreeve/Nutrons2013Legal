@@ -23,8 +23,8 @@ public class Elevator extends OnOffSubsystem{
         downLimit = new DigitalInput(RobotMap.DIGITAL_DOWN);
     }
 
-    private void set(double power) {
-        motor1.set(power);
+    private void setPower(double power) {
+        motor1.set(-power);
     }
 
     public void initDefaultCommand()
@@ -37,31 +37,43 @@ public class Elevator extends OnOffSubsystem{
     protected void initOff() {
     }
 
-    protected void execOn() {
-        if(upLimit.get())
+    protected void execOn()
+    {
+        if(isUp())
         {
-            set(0.3);
+            setPower(0.3);
         } else {
-            set(0.5);
+            setPower(0.65);
         }
     }
 
     protected void execOff() {
-        if(downLimit.get())
+        if(isDown())
         {
-            motor1.set(0);
+            setPower(0);
         } else {
-            motor1.set(-0.5);
+            setPower(-0.5);
         }
     }
 
-    public boolean isOn() {
+    public boolean isUp() {
         return !upLimit.get();
     }
 
-    public boolean isOff() {
+    public boolean isDown()
+    {
+        System.out.println("DOWN: " + !downLimit.get());
         return !downLimit.get();
     }
+
+    public boolean isOn() {
+        return isUp();
+    }
+
+    public boolean isOff() {
+        return isDown();
+    }
+
     public void stop() {
         motor1.set(0);
     }

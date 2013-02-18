@@ -7,7 +7,7 @@ import edu.neu.nutrons.ultimateascent.subsystems.OnOffSubsystem;
  *
  * @author NUTRONs
  */
-public class OOTurnONCmd extends OOCompleteActionCmd {
+public class OOTurnONCmd extends OOTurnCmd {
 
     public OOTurnONCmd(OnOffSubsystem sys) {
         super(sys, true);

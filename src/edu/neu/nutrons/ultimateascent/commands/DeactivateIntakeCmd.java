@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  * @author NUTRONs
  */
-public class DectivateShooterCmd extends CommandGroup {
+public class DeactivateIntakeCmd extends CommandGroup {
 
-    public DectivateShooterCmd() {
-        addSequential(new OOSetOFFCmd(CommandBase.shooter));
-        addSequential(new OOTurnOFFCmd(CommandBase.barrel));
-        addSequential(new OOTurnOFFCmd(CommandBase.magazine));
+    public DeactivateIntakeCmd() {
+        addSequential(new OOSetOFFCmd(CommandBase.intake));
+        addSequential(new OOSetOFFCmd(CommandBase.ddRoller));
+        addSequential(new OOTurnOFFCmd(CommandBase.dropdown));
     }
 }

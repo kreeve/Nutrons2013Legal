@@ -17,15 +17,6 @@ public class RobotMap {
     public static final int SHOOTER_1 = 7;
     public static final int SHOOTER_2 = 8;
     public static final int DDROLLER = 3;
-    // For example to map the left and right motors, you could define the
-    // following variables to use with your drivetrain subsystem.
-    // public static final int leftMotor = 1;
-    // public static final int rightMotor = 2;
-
-    // If you are using multiple modules, make sure to define both the port
-    // number and the module. For example you with a rangefinder:
-    // public static final int rangefinderPort = 1;
-    // public static final int rangefinderModule = 1;
 
     //Pneumatics -- FILL THESE IN WHEN THEYRE ALL WIRED -- THAT MEANS YOU
     public static final int DROPDOWN = 4;
@@ -33,6 +24,14 @@ public class RobotMap {
     public static final int MAGAZINE = 3;
     public static final int BOLT = 1;
     public static final int BARREL = 2;
+    //Barrel Double solenoid -- FILL IN IF WE USE IT
+    public static final int BARREL_1 = 2;
+    public static final int BARREL_2 = 2;
+    /* :p
+    * uncomment if you make double solenoid
+    * don't uncomment if you doin't
+    * if Anton: DO NOT ADD CAMEL
+    */
     public static final int CLIMBER = 5;
 
     public static final int DIGITAL_UP = 3;

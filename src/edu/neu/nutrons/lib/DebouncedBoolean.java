@@ -4,15 +4,13 @@ import edu.wpi.first.wpilibj.Timer;
 
 /**
  * Boolean that returns true only after a string of consecutive trues.
- *
- * @author Ziv
  */
 public class DebouncedBoolean {
 
-    // TODO: make this time-based instead of count-based.
     private double length = 0;
     Timer time = new Timer();
     private boolean state = false;
+    private boolean timerStarted = false;
 
     public DebouncedBoolean(double length) {
         this.length = length;
@@ -20,19 +18,22 @@ public class DebouncedBoolean {
     }
 
     public void feed(boolean in) {
-        System.out.println("Current timer: " + time.get());
-        double currentTime;
         if(state) {
             state = in;
-        }
-        else if(in) {
-            currentTime = time.get();
-            if(currentTime >= length) {
+        } else if(in) {
+            if(!timerStarted) {
+                time.reset();
+                time.start();
+                timerStarted = true;
+            }
+            if(time.get() >= length) {
                 state = true;
             }
         }
         if(!in) {
-            currentTime = 0;
+            time.stop();
+            time.reset();
+            timerStarted = false;
         }
     }
 
