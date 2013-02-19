@@ -4,8 +4,8 @@ package edu.neu.nutrons.ultimateascent;
 import edu.neu.nutrons.lib.Utils;
 import edu.neu.nutrons.ultimateascent.commands.*;
 import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOFFCmd;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetONCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOffCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.Joystick;
@@ -53,8 +53,8 @@ public class OI {
         ddIntake.whenReleased(new DeactivateIntakeCmd());
         spit.whileHeld(new IntakeSpitCmd());
         //climbing
-        hangerUp.whenPressed(new OOSetONCmd(CommandBase.climber));
-        hangerDown.whenPressed(new OOSetOFFCmd(CommandBase.climber));
+        hangerUp.whenPressed(new OOSetOnCmd(CommandBase.climber));
+        hangerDown.whenPressed(new OOSetOffCmd(CommandBase.climber));
     }
     public double manElevator()
     {

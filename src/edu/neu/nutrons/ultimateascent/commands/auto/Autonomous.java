@@ -6,8 +6,8 @@ package edu.neu.nutrons.ultimateascent.commands.auto;
 
 import edu.neu.nutrons.ultimateascent.commands.*;
 import edu.neu.nutrons.ultimateascent.commands.drivetrain.DTAutoCmd;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOFFCmd;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetONCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOffCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOFFCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnONCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -27,7 +27,7 @@ public class Autonomous extends CommandGroup {
     private double DTSpeed = 0.8;
     public Autonomous(int mode) {
         addSequential(new OOTurnONCmd(CommandBase.barrel));
-        addSequential(new OOSetONCmd(CommandBase.shooter));
+        addSequential(new OOSetOnCmd(CommandBase.shooter));
         addSequential(new ShooterFireCmd());
         addSequential(new ShooterFireCmd());
         addSequential(new ShooterFireCmd());
