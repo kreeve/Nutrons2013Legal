@@ -96,6 +96,8 @@ public class Nutrons2013Legal extends IterativeRobot {
     }
     public void disabledInit()
     {
+        CommandBase.magazine.init(true);
+        CommandBase.barrel.init(true);
         System.out.println("disabled");
         comp.stop();
     }
