@@ -37,5 +37,7 @@ public class RobotMap {
     public static final int DIGITAL_UP = 3;
     public static final int DIGITAL_DOWN = 4;
     public static final int AIR_PRESSURE = 5;
+    public static final int SHOOTER_ENC_A = 1;
+    public static final int SHOOTER_ENC_B = 2;
 
 }

@@ -47,7 +47,7 @@ public class DriveTrain extends Subsystem {
         driveLR(throttle-wheel, throttle+wheel);
     }
 
-       public void driveCheesy(double throttle, double wheel, boolean quickTurn) {
+    public void driveCheesy(double throttle, double wheel, boolean quickTurn) {
         // Variables.
         double angularPower;
         double overPower;

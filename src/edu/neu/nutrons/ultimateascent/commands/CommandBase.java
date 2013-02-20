@@ -26,7 +26,7 @@ public abstract class CommandBase extends Command {
     public static OnOffSubsystem barrel; // whether the shooter is up or down
     public static OnOffSubsystem climber;
     public static OnOffSubsystem elevator;
-    public static OnOffSubsystem shooter; // the actual wheels
+    public static Shooter shooter; // the actual wheels
     public static OnOffSubsystem ddRoller;
     public static OnOffSubsystem centerer;
 
@@ -54,12 +54,10 @@ public abstract class CommandBase extends Command {
         intake.exec();
         centerer.exec();
         System.out.println("ele " + stateStr(elevator) + "  mag " + stateStr(magazine)
-                + "bar " + stateStr(barrel) + "  dro " + stateStr(dropdown));
+                + "bar " + stateStr(barrel) + "  dro " + stateStr(dropdown) + " enc rate: " + shooter.getRate());
     }
 
     public static void init() {
-
-
         // Non-pneumatic subsystems.
         shooter = new Shooter();
         elevator = new Elevator();
