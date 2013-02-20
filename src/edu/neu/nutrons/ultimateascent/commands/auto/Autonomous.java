@@ -8,8 +8,8 @@ import edu.neu.nutrons.ultimateascent.commands.*;
 import edu.neu.nutrons.ultimateascent.commands.drivetrain.DTAutoCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOffCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOFFCmd;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnONCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOffCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
@@ -26,7 +26,7 @@ public class Autonomous extends CommandGroup {
     private double FRISBEE_TIME; //time to intake one frisbee (seconds)
     private double DTSpeed = 0.8;
     public Autonomous(int mode) {
-        addSequential(new OOTurnONCmd(CommandBase.barrel));
+        addSequential(new OOTurnOnCmd(CommandBase.barrel));
         addSequential(new OOSetOnCmd(CommandBase.shooter));
         addSequential(new ShooterFireCmd());
         addSequential(new ShooterFireCmd());

@@ -28,6 +28,8 @@ public abstract class CommandBase extends Command {
     public static OnOffSubsystem elevator;
     public static OnOffSubsystem shooter; // the actual wheels
     public static OnOffSubsystem ddRoller;
+    public static OnOffSubsystem centerer;
+
     public static Lawyer law;
 
     private static String stateStr(OnOffSubsystem sys) {
@@ -50,6 +52,7 @@ public abstract class CommandBase extends Command {
         elevator.exec();
         shooter.exec();
         intake.exec();
+        centerer.exec();
         System.out.println("ele " + stateStr(elevator) + "  mag " + stateStr(magazine)
                 + "bar " + stateStr(barrel) + "  dro " + stateStr(dropdown));
     }
@@ -70,6 +73,7 @@ public abstract class CommandBase extends Command {
         barrel = new PneumaticOnOffSubsystem(RobotMap.BARREL, false, .5);
         bolt = new PneumaticOnOffSubsystem(RobotMap.BOLT, true, .25);
         climber = new PneumaticOnOffSubsystem(RobotMap.CLIMBER, true, .5);
+        centerer = new PneumaticOnOffSubsystem(RobotMap.CENTERER, false, 0.5);
 
         law = new Lawyer();
 

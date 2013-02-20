@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  */
 public class ShooterFireCmd extends CommandGroup {
     public ShooterFireCmd() {
-        addSequential(new OOTurnONCmd(CommandBase.bolt));
-        addSequential(new OOTurnOFFCmd(CommandBase.bolt));
+        addSequential(new OOTurnOnCmd(CommandBase.bolt));
+        addSequential(new OOTurnOffCmd(CommandBase.bolt));
     }
 }

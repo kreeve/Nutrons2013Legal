@@ -7,9 +7,9 @@ import edu.neu.nutrons.ultimateascent.subsystems.OnOffSubsystem;
  *
  * @author NUTRONs
  */
-public class OOTurnONCmd extends OOTurnCmd {
+public class OOTurnOnCmd extends OOTurnCmd {
 
-    public OOTurnONCmd(OnOffSubsystem sys) {
+    public OOTurnOnCmd(OnOffSubsystem sys) {
         super(sys, true);
     }
 }

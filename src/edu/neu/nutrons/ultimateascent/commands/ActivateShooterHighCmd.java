@@ -4,7 +4,7 @@
  */
 package edu.neu.nutrons.ultimateascent.commands;
 
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnONCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -15,6 +15,6 @@ public class ActivateShooterHighCmd extends CommandGroup {
 
     public ActivateShooterHighCmd() {
         addSequential(new ActivateShooterCmd());
-        addSequential(new OOTurnONCmd(CommandBase.elevator));
+        addSequential(new OOTurnOnCmd(CommandBase.elevator));
     }
 }

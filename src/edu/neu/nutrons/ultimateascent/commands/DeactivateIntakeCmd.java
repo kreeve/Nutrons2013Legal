@@ -18,5 +18,6 @@ public class DeactivateIntakeCmd extends CommandGroup {
         addSequential(new OOSetOffCmd(CommandBase.intake));
         addSequential(new OOSetOffCmd(CommandBase.ddRoller));
         addSequential(new OOTurnOFFCmd(CommandBase.dropdown));
+    
     }
 }
