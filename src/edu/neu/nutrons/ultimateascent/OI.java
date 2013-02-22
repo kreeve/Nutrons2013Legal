@@ -39,6 +39,9 @@ public class OI {
     private Button hangerUp = new JoystickButton(opPad, 9);
     private Button hangerDown = new JoystickButton(opPad, 10);
 
+    // Control Board Buttons (Needs Testing)
+    private DigitalIOButton testButton = new DigitalIOButton(6);
+
     public OI()
     {
         //aim and fire
@@ -55,6 +58,9 @@ public class OI {
         //climbing
         hangerUp.whenPressed(new OOSetOnCmd(CommandBase.climber));
         hangerDown.whenPressed(new OOSetOffCmd(CommandBase.climber));
+
+        // control board
+        testButton.whenPressed(new TestCmd(6));
     }
     public double manElevator()
     {
