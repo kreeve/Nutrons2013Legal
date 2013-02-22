@@ -5,7 +5,7 @@
 package edu.neu.nutrons.ultimateascent.commands;
 
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOFFCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOffCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**

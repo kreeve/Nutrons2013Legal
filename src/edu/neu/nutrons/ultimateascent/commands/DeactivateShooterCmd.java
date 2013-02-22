@@ -5,7 +5,7 @@
 package edu.neu.nutrons.ultimateascent.commands;
 
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOffCmd;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOFFCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOffCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -16,8 +16,8 @@ public class DeactivateShooterCmd extends CommandGroup {
 
     public DeactivateShooterCmd() {
         addSequential(new OOSetOffCmd(CommandBase.shooter));
-        addSequential(new OOTurnOFFCmd(CommandBase.barrel));
-        addSequential(new OOTurnOFFCmd(CommandBase.magazine));
-        addSequential(new OOTurnOFFCmd(CommandBase.elevator));
+        addSequential(new OOTurnOffCmd(CommandBase.barrel));
+        addSequential(new OOTurnOffCmd(CommandBase.magazine));
+        addSequential(new OOTurnOffCmd(CommandBase.elevator));
     }
 }

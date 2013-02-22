@@ -8,7 +8,7 @@ import edu.neu.nutrons.ultimateascent.commands.*;
 import edu.neu.nutrons.ultimateascent.commands.drivetrain.DTAutoCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOffCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOFFCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOffCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnONCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
