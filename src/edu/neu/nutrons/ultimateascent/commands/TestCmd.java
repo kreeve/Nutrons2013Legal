@@ -7,6 +7,8 @@ package edu.neu.nutrons.ultimateascent.commands;
 /**
  *
  * @author NUTRONs
+ * TEST COMMAND
+ * For button testing purposes
  */
 public class TestCmd extends CommandBase {
 

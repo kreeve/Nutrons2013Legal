@@ -1,4 +1,3 @@
-
 package edu.neu.nutrons.ultimateascent;
 
 import edu.neu.nutrons.lib.Utils;
@@ -42,8 +41,7 @@ public class OI {
     // Control Board Buttons (Needs Testing)
     private DigitalIOButton testButton = new DigitalIOButton(6);
 
-    public OI()
-    {
+    public OI() {
         //aim and fire
         activateShooterHigh.whenPressed(new ActivateShooterHighCmd());
         activateShooterLow.whenPressed(new ActivateShooterLowCmd());
@@ -62,10 +60,14 @@ public class OI {
         // control board
         testButton.whenPressed(new TestCmd(6));
     }
+
+    // For elevator testing purposes
     public double manElevator()
     {
         return -1*opPad.getRawAxis(2);
     }
+
+    // Deadband on joystick
     private double capAndBand(double value) {
         value = Utils.deadband(value, .075, -1);
         value = Utils.deadband(value, .15, 0);
@@ -78,6 +80,7 @@ public class OI {
         return normalized;
     }
 
+    // Gets input from driver station joysticks
     private double getIOAnalog(int port) {
         double in;
         try {
@@ -90,6 +93,7 @@ public class OI {
         return refined;
     }
 
+    // Gets input from buttons on driver station
     private boolean getIODigital(int port) {
         boolean in = false;
         try {
@@ -100,18 +104,20 @@ public class OI {
         return in;
     }
 
-    public double getDriveThrottle() {
+    public double getDriveLeft() {
         return getIOAnalog(DRIVE_THROTTLE);
     }
 
-    public double getDriveWheel() {
+    public double getDriveRight() {
         return getIOAnalog(DRIVE_WHEEL);
     }
 
     public boolean getDriveQuickTurn() throws DriverStationEnhancedIO.EnhancedIOException {
+        // Not in use
         return getIODigital(DRIVE_QUICK_TURN);
     }
 
+    // Selects number of frisbees to fire during auto
     public int getAutoMode() {
         if(opPad.getRawButton(2)) {
             return Autonomous.THREE_DISC;

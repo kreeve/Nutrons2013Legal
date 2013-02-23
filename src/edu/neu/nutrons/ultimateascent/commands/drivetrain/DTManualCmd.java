@@ -7,6 +7,9 @@ import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
 /**
  *
  * @author NUTRONs
+ * MANUAL DRIVE
+ * Control the drive train using driver station joysticks
+ * Currently uses tank drive
  */
 public class DTManualCmd extends CommandBase {
 
@@ -18,9 +21,7 @@ public class DTManualCmd extends CommandBase {
     }
 
     protected void execute() {
-            // TODO: make the drive train go!
-            //dt.driveTW(oi.getDriveThrottle(), oi.getDriveWheel());
-        dt.driveLR(oi.getDriveThrottle(),oi.getDriveWheel());
+        dt.driveLR(oi.getDriveLeft(),oi.getDriveRight());
     }
 
     protected boolean isFinished() {

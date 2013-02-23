@@ -12,6 +12,9 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  *
  * @author NUTRONs
+ * FIRE FRISBEE
+ * Step 1: Extend bolt
+ * Step 2: Retract bolt
  */
 public class ShooterFireCmd extends CommandGroup {
     public ShooterFireCmd() {

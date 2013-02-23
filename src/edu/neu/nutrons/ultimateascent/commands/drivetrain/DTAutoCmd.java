@@ -9,6 +9,8 @@ import edu.neu.nutrons.ultimateascent.commands.CommandBase;
 /**
  *
  * @author NUTRONs
+ * AUTO DRIVE
+ * Drives the robot forwards for a certain amount of time with a certain throttle
  */
 public class DTAutoCmd extends CommandBase {
 
@@ -24,7 +26,7 @@ public class DTAutoCmd extends CommandBase {
     }
 
     protected void execute() {
-        dt.driveTW(throttle, 0);
+        dt.driveLR(throttle, throttle); //Drive both sides at same speed
     }
 
     protected boolean isFinished() {

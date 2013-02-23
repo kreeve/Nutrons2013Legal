@@ -11,11 +11,12 @@ import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOffCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
  * @author NUTRONs
+ * AUTONOMOUS
+ * Shoots either 0, 3, 5, or 7 based on input during disabled period
  */
 public class Autonomous extends CommandGroup {
 
@@ -26,7 +27,6 @@ public class Autonomous extends CommandGroup {
     private double FRISBEE_TIME; //time to intake one frisbee (seconds)
     private double DTSpeed = 0.8;
     public Autonomous(int mode) {
-        addSequential(new OOTurnOnCmd(CommandBase.barrel));
         addSequential(new OOSetOnCmd(CommandBase.shooter));
         addSequential(new ShooterFireCmd());
         addSequential(new ShooterFireCmd());
@@ -53,21 +53,5 @@ public class Autonomous extends CommandGroup {
                 addSequential(new DeactivateShooterCmd());
             }
         }
-
-        /* These aren't the right auto commands, so you should probably delete them. -ziv
-            addSequential(new OOSetOFFCmd(CommandBase.elevator));
-            addSequential(new OOSetONCmd(CommandBase.dropdown));
-            addSequential(new OOSetONCmd(CommandBase.intake));
-            addSequential(new DTAutoCmd(5000, DTSpeed));
-            addSequential(new OOSetONCmd(CommandBase.elevator));
-            addSequential(new OOSetONCmd(CommandBase.bolt));
-            addSequential(new OOSetOFFCmd(CommandBase.bolt));
-            addSequential(new OOSetONCmd(CommandBase.bolt));
-            addSequential(new OOSetOFFCmd(CommandBase.bolt));
-            addSequential(new OOSetONCmd(CommandBase.bolt));
-            addSequential(new OOSetOFFCmd(CommandBase.bolt));
-            addSequential(new OOSetONCmd(CommandBase.bolt));
-            addSequential(new OOSetOFFCmd(CommandBase.bolt));
-         */
     }
 }

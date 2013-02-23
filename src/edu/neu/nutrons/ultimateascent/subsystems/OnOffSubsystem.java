@@ -4,7 +4,7 @@ package edu.neu.nutrons.ultimateascent.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * Drive train moves around and cool stuff like that.
+ * Subsystem with on and off states.
  */
 public abstract class OnOffSubsystem extends Subsystem {
 

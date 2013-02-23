@@ -7,6 +7,7 @@ package edu.neu.nutrons.ultimateascent;
  * floating around.
  */
 public class RobotMap {
+    // Motors
     public static final int DRIVE_LEFT_MOTOR_1 = 9;
     public static final int DRIVE_LEFT_MOTOR_2 = 10;
     public static final int DRIVE_RIGHT_MOTOR_1 = 5;
@@ -18,22 +19,18 @@ public class RobotMap {
     public static final int SHOOTER_2 = 8;
     public static final int DDROLLER = 3;
 
-    //Pneumatics -- FILL THESE IN WHEN THEYRE ALL WIRED -- THAT MEANS YOU
+    // Pneumatics
     public static final int DROPDOWN = 4;
     public static final int CENTERER = 6;
     public static final int MAGAZINE = 3;
     public static final int BOLT = 1;
     public static final int BARREL = 2;
+    public static final int CLIMBER = 5;
     //Barrel Double solenoid -- FILL IN IF WE USE IT
     public static final int BARREL_1 = 2;
     public static final int BARREL_2 = 2;
-    /* :p
-    * uncomment if you make double solenoid
-    * don't uncomment if you doin't
-    * if Anton: DO NOT ADD CAMEL
-    */
-    public static final int CLIMBER = 5;
 
+    // Inputes
     public static final int DIGITAL_UP = 3;
     public static final int DIGITAL_DOWN = 4;
     public static final int AIR_PRESSURE = 5;

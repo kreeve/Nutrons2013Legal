@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  * @author NUTRONs
+ * ACTIVATE SHOOTER HIGH
+ * Step 1: Turn on shooter
+ * Step 2: Lift shooter into high position
  */
 public class ActivateShooterHighCmd extends CommandGroup {
 

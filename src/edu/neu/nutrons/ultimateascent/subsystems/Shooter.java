@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.Talon;
 /**
  *
  * @author NUTRONs
+ * Shooter subsystem
+ * ON: Motor on
+ * OFF: Motor off
  */
 public class Shooter extends OnOffSubsystem {
 

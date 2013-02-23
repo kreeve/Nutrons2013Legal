@@ -10,6 +10,8 @@ import edu.neu.nutrons.ultimateascent.subsystems.OnOffSubsystem;
 /**
  *
  * @author NUTRONs
+ * Dictates the legal commands that are runnable at any given time.
+ * Currently just returns true, because everything is in sequence anyways.
  */
 public class Lawyer {
 

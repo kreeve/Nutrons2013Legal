@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.Talon;
 /**
  *
  * @author NUTRONs
+ * Roller on the drop down
+ * ON: Motors on
+ * OFF: Motors off
  */
 public class DDRoller extends OnOffSubsystem {
     private Talon DDMotor = new Talon(RobotMap.DDROLLER);

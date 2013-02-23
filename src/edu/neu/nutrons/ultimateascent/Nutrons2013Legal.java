@@ -96,8 +96,8 @@ public class Nutrons2013Legal extends IterativeRobot {
     }
     public void disabledInit()
     {
-        CommandBase.magazine.init(true);
-        CommandBase.barrel.init(true);
+        // Lifts magazine and barrel after being disabled
+        // NOTE: NO LONGER NEEDED BARREL IN FIXED POSITION
         System.out.println("disabled");
         comp.stop();
     }

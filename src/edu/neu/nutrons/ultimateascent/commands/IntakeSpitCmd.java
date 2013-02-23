@@ -7,6 +7,8 @@ package edu.neu.nutrons.ultimateascent.commands;
 /**
  *
  * @author NUTRONs
+ * SPITS INTAKE
+ * Reverses intake in case of Frisbee jam
  */
 public class IntakeSpitCmd extends CommandBase {
 

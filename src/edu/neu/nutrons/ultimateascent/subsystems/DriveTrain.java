@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Drive train moves around and cool stuff like that.
+ * Uses tank drive.
  */
 public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem

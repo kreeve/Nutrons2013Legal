@@ -7,6 +7,8 @@ package edu.neu.nutrons.ultimateascent.commands;
 /**
  *
  * @author NUTRONs
+ * CONTROL ELEVATOR MANUALLY
+ * For testing purposes only
  */
 public class ElevatorManualCmd extends CommandBase {
 

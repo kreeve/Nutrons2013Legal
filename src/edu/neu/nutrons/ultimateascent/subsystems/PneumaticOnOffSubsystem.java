@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 /**
  *
  * @author NUTRONs
+ * OnOffSubsystem with pneumatics.
  */
 public class PneumaticOnOffSubsystem extends OnOffSubsystem {
 

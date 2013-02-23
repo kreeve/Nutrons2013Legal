@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 /**
  * Boolean that returns true only after a string of consecutive trues.
+ * Length: time to wait until returning true in milliseconds.
  */
 public class DebouncedBoolean {
 

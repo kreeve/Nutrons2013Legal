@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.Victor;
 /**
  *
  * @author NUTRONs
+ * Elevator subsystem
+ * ON: High position
+ * OFF: Low position
  */
 public class Elevator extends OnOffSubsystem{
     private Victor motor1;

@@ -6,6 +6,7 @@ import edu.neu.nutrons.ultimateascent.subsystems.OnOffSubsystem;
 /**
  *
  * @author NUTRONs
+ * Sets subsystem to off.
  */
 public class OOSetOffCmd extends OOSetCmd {
 

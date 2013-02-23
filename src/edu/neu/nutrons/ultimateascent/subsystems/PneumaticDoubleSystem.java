@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  * @author NUTRONs
+ * OnOffSubsystems with two pneumatics.
  */
 public class PneumaticDoubleSystem extends OnOffSubsystem {
     protected DoubleSolenoid piston;

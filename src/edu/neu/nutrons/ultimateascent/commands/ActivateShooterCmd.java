@@ -7,19 +7,22 @@ package edu.neu.nutrons.ultimateascent.commands;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-
 /**
  *
  * @author NUTRONs
+ * ACTIVATES SHOOTER
+ * Step 1: Deactivate intake
+ * Step 2: Turn off centerer so we can move magazine
+ * Step 3: Start shooter motor
+ * Step 4: Retract motor into barrel before moving
+ * Step 5: Lift barrel into shooting position
  */
 public class ActivateShooterCmd extends CommandGroup {
 
     public ActivateShooterCmd() {
-        // TODO: Add deactivate intake command. -- ADDED 2/17 9:45pm
         addSequential(new DeactivateIntakeCmd());
         addSequential(new OOTurnOnCmd(CommandBase.centerer));
         addSequential(new OOSetOnCmd(CommandBase.shooter));
         addSequential(new OOTurnOnCmd(CommandBase.magazine));
-        addSequential(new OOTurnOnCmd(CommandBase.barrel));
     }
 }

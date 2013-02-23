@@ -10,6 +10,10 @@ import edu.wpi.first.wpilibj.Talon;
 /**
  *
  * @author NUTRONs
+ * Intake without drop down
+ * ON: Motors on
+ * OFF: Motors off
+ * SPIT: Motors reversed
  */
 public class Intake extends OnOffSubsystem {
 

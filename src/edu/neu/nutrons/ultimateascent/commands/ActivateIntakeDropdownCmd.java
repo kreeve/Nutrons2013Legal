@@ -9,8 +9,12 @@ import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *5
+ *
  * @author NUTRONs
+ * ACTIVATE DROPDOWN INTAKE
+ * Step 1: Activate Intake
+ * Step 2: Run roller motor
+ * Step 3: Drop down roller
  */
 public class ActivateIntakeDropdownCmd extends CommandGroup {
 

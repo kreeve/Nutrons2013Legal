@@ -12,26 +12,26 @@ import edu.wpi.first.wpilibj.DriverStationLCD;
  * The base for all commands. All atomic commands should subclass CommandBase.
  * CommandBase stores creates and stores each control system. To access a
  * subsystem elsewhere in your code in your code use CommandBase.exampleSubsystem
- * @author Author
+ * @author NUTRONs
  */
 public abstract class CommandBase extends Command {
 
     public static OI oi;
-    // Create a single static instance of all of your subsystems
-    public static DriveTrain dt = new DriveTrain();
-    public static OnOffSubsystem dropdown;
-    public static Intake intake;
-    public static OnOffSubsystem magazine;
-    public static OnOffSubsystem bolt;
-    public static OnOffSubsystem barrel; // whether the shooter is up or down
-    public static OnOffSubsystem climber;
-    public static OnOffSubsystem elevator;
+    // Declaration of subsystems
+    public static DriveTrain dt = new DriveTrain(); // drive train
+    public static OnOffSubsystem dropdown; // drop down roller
+    public static Intake intake; // regular intake
+    public static OnOffSubsystem magazine; // carries frisbees must be retracted to move barrel
+    public static OnOffSubsystem bolt; // pushes frisbee into shooter
+    public static OnOffSubsystem climber; // hooks that extend to climb to first level
+    public static OnOffSubsystem elevator; // elevates the shooter with its related subsystems
     public static Shooter shooter; // the actual wheels
-    public static OnOffSubsystem ddRoller;
-    public static OnOffSubsystem centerer;
+    public static OnOffSubsystem ddRoller; // motor of the drop down roller
+    public static OnOffSubsystem centerer; // centers the frisbees must be retracted to use other subsystems
 
     public static Lawyer law;
 
+    // Returns the state of the subsystem passed in
     private static String stateStr(OnOffSubsystem sys) {
         if(sys.isOn()) {
             return "ON ";
@@ -42,11 +42,11 @@ public abstract class CommandBase extends Command {
         }
     }
 
+    // Executes all subsystems
     public static void handleSubsystems() {
         dropdown.exec();
         magazine.exec();
         bolt.exec();
-        barrel.exec();
         climber.exec();
         ddRoller.exec();
         elevator.exec();
@@ -54,7 +54,7 @@ public abstract class CommandBase extends Command {
         intake.exec();
         centerer.exec();
         System.out.println("ele " + stateStr(elevator) + "  mag " + stateStr(magazine)
-                + "bar " + stateStr(barrel) + "  dro " + stateStr(dropdown) + " enc rate: " + shooter.getRate());
+                + "  dro " + stateStr(dropdown) + " enc rate: " + shooter.getRate());
     }
 
     public static void init() {
@@ -65,10 +65,9 @@ public abstract class CommandBase extends Command {
         intake = new Intake();
         ddRoller = new DDRoller();
 
-        // PneumaticOnOffSubsystems
+        // PneumaticOnOffSubsystems (subsystem, default position, delay)
         dropdown = new PneumaticOnOffSubsystem(RobotMap.DROPDOWN, true, .5);
         magazine = new PneumaticOnOffSubsystem(RobotMap.MAGAZINE, false, 1, .5);
-        barrel = new PneumaticOnOffSubsystem(RobotMap.BARREL, false, .5);
         bolt = new PneumaticOnOffSubsystem(RobotMap.BOLT, true, .25);
         climber = new PneumaticOnOffSubsystem(RobotMap.CLIMBER, true, .5);
         centerer = new PneumaticOnOffSubsystem(RobotMap.CENTERER, false, 0.5);
