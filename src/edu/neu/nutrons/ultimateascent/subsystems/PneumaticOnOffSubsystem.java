@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj.Solenoid;
  *
  * @author NUTRONs
  * OnOffSubsystem with pneumatics.
+ * onState: default on state for the pistons
+ * limboTimeOn: time delay for turning on
+ * limboTimeOff: time delay for turning off
  */
 public class PneumaticOnOffSubsystem extends OnOffSubsystem {
 
