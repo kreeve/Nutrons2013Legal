@@ -3,6 +3,7 @@ package com.team254.lib.control.impl;
 import com.team254.lib.control.ControlOutput;
 import com.team254.lib.control.ControlSource;
 import com.team254.lib.control.PIDGains;
+import com.team254.lib.util.ThrottledPrinter;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
@@ -29,6 +30,7 @@ public class ProfiledPIDController extends PIDController {
   private double lastTime = 0;
   double origGoal;
   double sign = 1;
+  ThrottledPrinter printer = new ThrottledPrinter(.1);
 
   public ProfiledPIDController(String name, PIDGains gains, ControlSource source, ControlOutput output, double maxV, double timeToMaxV) {
     super(name, gains, source, output);
@@ -40,7 +42,6 @@ public class ProfiledPIDController extends PIDController {
     if (enabled) {
       double t = timer.get();
       setpoint = getGoal();
-      System.out.println(getGoal() + " " + source.get());
       double period = t - lastTime;
       if (t < timeToMaxVelocity) {
         // Accelerate up.
@@ -49,7 +50,7 @@ public class ProfiledPIDController extends PIDController {
         // Maintain max velocity.
         setpoint += (velocity * period * sign);
       } else if (t < timeTotal) {
-         // Accelerate down.
+        // Accelerate down.
         double decelTime = t - timeFromMaxVelocity;
         double v = velocity + (-acceleration * decelTime);
         setpoint += (v * period  * sign);
@@ -61,9 +62,9 @@ public class ProfiledPIDController extends PIDController {
   }
 
   public void setGoal(double goal) {
-    setpoint = goal;
-    origGoal = goal;
-    sign = (goal < source.get()) ? -1.0 : 1.0;
+    setpoint = goal - source.get();
+    origGoal = goal - source.get();
+    sign = (setpoint < 0) ? -1.0 : 1.0;
     timeToMaxVelocity = velocity / acceleration;
     double deltaPosMaxV = (sign*setpoint) - (timeToMaxVelocity * velocity);
     double timeAtMaxV = deltaPosMaxV / velocity;
