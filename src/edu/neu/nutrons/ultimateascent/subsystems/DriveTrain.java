@@ -41,6 +41,8 @@ public class DriveTrain extends Subsystem {
         }
     }
     public void driveLR(double left, double right) {
+        left = Utils.limit(left, -1, 1);
+        right = Utils.limit(right, -1, 1);
         leftMotor1.set(-left);
         leftMotor2.set(-left);
         rightMotor1.set(right);
@@ -94,6 +96,10 @@ public class DriveTrain extends Subsystem {
     }
         public int getEncoderValue() {
         return enc.get();
+    }
+        
+    public double getEncoderDistance() {
+      return enc.getDistance();
     }
 
     public double getGyroValue() {
