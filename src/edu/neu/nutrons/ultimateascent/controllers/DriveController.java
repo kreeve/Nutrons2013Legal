@@ -80,6 +80,17 @@ public class DriveController {
   public void disable() {
     straightController.disable();
     turnController.disable();
+    straight = 0;
+    turn = 0;
+    dt.driveLR(0, 0);
+  }
+  
+  public void setMaxVel(double v) {
+    // TODO: use this to set the profiled pid controller once that works
+  }
+  
+  public void setOpenLoopStraight(double s) {
+    straight = s;
   }
   
 }
