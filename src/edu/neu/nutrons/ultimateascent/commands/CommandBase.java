@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.neu.nutrons.ultimateascent.OI;
 import edu.neu.nutrons.ultimateascent.RobotMap;
+import edu.neu.nutrons.ultimateascent.controllers.DriveController;
 import edu.neu.nutrons.ultimateascent.subsystems.*;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 
@@ -18,7 +19,8 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
     // Declaration of subsystems
-    public static DriveTrain dt = new DriveTrain(); // drive train
+    public static final DriveTrain dt = new DriveTrain(); // drive train
+    public static DriveController driveController = new DriveController(dt);
     public static OnOffSubsystem dropdown; // drop down roller
     public static Intake intake; // regular intake
     public static OnOffSubsystem magazine; // carries frisbees must be retracted to move barrel
