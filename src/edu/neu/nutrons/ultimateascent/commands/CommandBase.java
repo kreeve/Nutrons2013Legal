@@ -70,7 +70,7 @@ public abstract class CommandBase extends Command {
         magazine = new PneumaticOnOffSubsystem(RobotMap.MAGAZINE, false, 1, .5);
         bolt = new PneumaticOnOffSubsystem(RobotMap.BOLT, true, .25);
         climber = new PneumaticOnOffSubsystem(RobotMap.CLIMBER, true, .5);
-        centerer = new PneumaticOnOffSubsystem(RobotMap.CENTERER, false, 0.5);
+        centerer = new PneumaticOnOffSubsystem(RobotMap.CENTERER, RobotMap.CENTERER_RETRACTED, 0.5);
 
         law = new Lawyer();
 

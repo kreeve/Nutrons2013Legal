@@ -36,5 +36,9 @@ public class RobotMap {
     public static final int AIR_PRESSURE = 5;
     public static final int SHOOTER_ENC_A = 1;
     public static final int SHOOTER_ENC_B = 2;
+     public static final int DRIVE_ENC_A = 6;
+    public static final int DRIVE_ENC_B = 7;
+    public static final int GYRO = 1;
 
+    public static final boolean CENTERER_RETRACTED = false;
 }

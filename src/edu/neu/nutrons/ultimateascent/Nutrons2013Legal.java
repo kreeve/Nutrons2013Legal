@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.neu.nutrons.ultimateascent.commands.CommandBase;
-import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous;
+import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous_OLD;
 import edu.neu.nutrons.ultimateascent.commands.drivetrain.DTManualCmd;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStationLCD;
@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.DriverStationLCD;
 public class Nutrons2013Legal extends IterativeRobot {
 
     private Command autonomousCommand;
-    private int autonomousMode = Autonomous.NONE;
+    private int autonomousMode = Autonomous_OLD.NONE;
     private Compressor comp = new Compressor(RobotMap.AIR_PRESSURE, RobotMap.COMPRESSOR_PORT);
     /**
      * This function is run when the robot is first started up and should be
@@ -38,12 +38,12 @@ public class Nutrons2013Legal extends IterativeRobot {
        // comp.start();
         // Initialize all subsystems
         CommandBase.init();
-        autonomousCommand = new Autonomous(Autonomous.THREE_DISC);
+        autonomousCommand = new Autonomous_OLD(Autonomous_OLD.THREE_DISC);
     }
 
     public void disabledPeriodic() {
         int oiAutoMode = CommandBase.oi.getAutoMode();
-        if(oiAutoMode != Autonomous.NONE && oiAutoMode != autonomousMode) {
+        if(oiAutoMode != Autonomous_OLD.NONE && oiAutoMode != autonomousMode) {
             autonomousMode = oiAutoMode;
             DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1,
                     "Auto: " + autonomousMode + "             ");
@@ -53,7 +53,7 @@ public class Nutrons2013Legal extends IterativeRobot {
 
     public void autonomousInit()
     {
-        autonomousCommand = new Autonomous(autonomousMode);
+        autonomousCommand = new Autonomous_OLD(autonomousMode);
         // schedule the autonomous command (example)
         autonomousCommand.start();
     }

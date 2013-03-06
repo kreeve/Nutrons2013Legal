@@ -2,7 +2,7 @@ package edu.neu.nutrons.ultimateascent;
 
 import edu.neu.nutrons.lib.Utils;
 import edu.neu.nutrons.ultimateascent.commands.*;
-import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous;
+import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous_OLD;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOffCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
+
+// TESTING CENTERER IN BUTTON 1
+
 public class OI {
 
     // Joystick mappings.
@@ -38,6 +41,9 @@ public class OI {
     private Button hangerUp = new JoystickButton(opPad, 9);
     private Button hangerDown = new JoystickButton(opPad, 10);
 
+    //test
+    private Button centererTest = new JoystickButton(opPad, 1);
+
     // Control Board Buttons (Needs Testing)
     private DigitalIOButton testButton = new DigitalIOButton(6);
 
@@ -57,8 +63,12 @@ public class OI {
         hangerUp.whenPressed(new OOSetOnCmd(CommandBase.climber));
         hangerDown.whenPressed(new OOSetOffCmd(CommandBase.climber));
 
+        // testing
+        centererTest.whenPressed(new TestCentererCmd(RobotMap.CENTERER_RETRACTED));
+
         // control board
         testButton.whenPressed(new TestCmd(6));
+
     }
 
     // For elevator testing purposes
@@ -120,13 +130,13 @@ public class OI {
     // Selects number of frisbees to fire during auto
     public int getAutoMode() {
         if(opPad.getRawButton(2)) {
-            return Autonomous.THREE_DISC;
+            return Autonomous_OLD.THREE_DISC;
         } else if(opPad.getRawButton(3)) {
-            return Autonomous.FIVE_DISC;
+            return Autonomous_OLD.FIVE_DISC;
         } else if(opPad.getRawButton(4)) {
-            return Autonomous.SEVEN_DISC;
+            return Autonomous_OLD.SEVEN_DISC;
         } else {
-            return Autonomous.NONE;
+            return Autonomous_OLD.NONE;
         }
     }
 }

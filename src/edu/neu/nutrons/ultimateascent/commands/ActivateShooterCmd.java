@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * Step 2: Turn off centerer so we can move magazine
  * Step 3: Start shooter motor
  * Step 4: Retract motor into barrel before moving
- * Step 5: Lift barrel into shooting position
  */
 public class ActivateShooterCmd extends CommandGroup {
 
