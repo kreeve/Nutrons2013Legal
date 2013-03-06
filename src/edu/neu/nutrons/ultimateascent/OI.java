@@ -28,46 +28,30 @@ public class OI {
 
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
     private Joystick opPad = new Joystick(1);
-    //aim and shoot buttons
-    private Button activateShooterHigh = new JoystickButton(opPad, 4);
-    private Button activateShooterLow = new JoystickButton(opPad, 3);
-    private Button deactivateShooter = new JoystickButton(opPad, 2);
-    private Button fireFrisbee = new JoystickButton(opPad, 6);
-    //intake buttons
-    private Button ddIntake = new JoystickButton(opPad, 5);
-    private Button intake = new JoystickButton(opPad, 7);
-    private Button spit = new JoystickButton(opPad, 8);
-    //hanger
-    private Button hangerUp = new JoystickButton(opPad, 9);
-    private Button hangerDown = new JoystickButton(opPad, 10);
-
     //test
     private Button centererTest = new JoystickButton(opPad, 1);
 
     // Control Board Buttons (Needs Testing)
-    private DigitalIOButton testButton = new DigitalIOButton(6);
+    private DigitalIOButton intake = new DigitalIOButton(12);
+    private DigitalIOButton spit= new DigitalIOButton(14);
+    private DigitalIOButton shooterLow = new DigitalIOButton(10);
+    private DigitalIOButton shooterHigh = new DigitalIOButton(2);
+    private DigitalIOButton fire = new DigitalIOButton(4);
+    private DigitalIOButton humanLoad = new DigitalIOButton(6);
 
     public OI() {
-        //aim and fire
-        activateShooterHigh.whenPressed(new ActivateShooterHighCmd());
-        activateShooterLow.whenPressed(new ActivateShooterLowCmd());
-        deactivateShooter.whenPressed(new DeactivateShooterCmd());
-        fireFrisbee.whenPressed(new ShooterFireCmd());
-        //intake
-        intake.whenPressed(new ActivateIntakeCmd());
-        intake.whenReleased(new DeactivateIntakeCmd());
-        ddIntake.whenPressed(new ActivateIntakeDropdownCmd());
-        ddIntake.whenReleased(new DeactivateIntakeCmd());
-        spit.whileHeld(new IntakeSpitCmd());
-        //climbing
-        hangerUp.whenPressed(new OOSetOnCmd(CommandBase.climber));
-        hangerDown.whenPressed(new OOSetOffCmd(CommandBase.climber));
-
         // testing
         centererTest.whenPressed(new TestCentererCmd(RobotMap.CENTERER_RETRACTED));
 
         // control board
-        testButton.whenPressed(new TestCmd(6));
+        intake.whenPressed(new ActivateIntakeCmd());
+        intake.whenReleased(new DeactivateIntakeCmd());
+        spit.whenPressed(new IntakeSpitCmd());
+        spit.whenReleased(new DeactivateIntakeCmd());
+        shooterLow.whenPressed(new ActivateShooterLowCmd());
+        shooterHigh.whenPressed(new ActivateShooterHighCmd());
+        fire.whenPressed(new ShooterFireCmd());
+        humanLoad.whenPressed(new HumanLoadCmd());
 
     }
 

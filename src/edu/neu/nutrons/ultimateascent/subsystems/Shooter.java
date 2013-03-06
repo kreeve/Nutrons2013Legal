@@ -7,6 +7,7 @@ package edu.neu.nutrons.ultimateascent.subsystems;
 import edu.neu.nutrons.lib.DebouncedBoolean;
 import edu.neu.nutrons.lib.Utils;
 import edu.neu.nutrons.ultimateascent.RobotMap;
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 
@@ -22,6 +23,7 @@ public class Shooter extends OnOffSubsystem {
     private Talon sMotor1 = new Talon(RobotMap.SHOOTER_1);
     private Talon sMotor2 = new Talon(RobotMap.SHOOTER_2);
     private Encoder enc = new Encoder(RobotMap.SHOOTER_ENC_A, RobotMap.SHOOTER_ENC_B);
+    private Counter speed = new Counter(RobotMap.SHOOTER_ENC_A);
     private DebouncedBoolean spinUpTime = new DebouncedBoolean(500);
     private final double SHOOTER_POWER = 1.0;
 
@@ -57,6 +59,11 @@ public class Shooter extends OnOffSubsystem {
     }
 
     public double getRate() {
+        // Not sure if we'll use this....
+
+        // "Counter" method
+       // return speed.getPeriod();
         return enc.getRate();
+
     }
 }
