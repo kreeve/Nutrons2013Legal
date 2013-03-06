@@ -112,4 +112,8 @@ public class DriveTrain extends Subsystem {
     public void setHighGear(boolean gear) {
         shifter.set(gear);
     }
+    
+    public void resetEncoder() {
+      enc.reset();
+    }
 }
