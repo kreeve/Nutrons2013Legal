@@ -46,7 +46,7 @@ public class Elevator extends OnOffSubsystem{
         {
             setPower(0.3);
         } else {
-            setPower(0.65);
+            setPower(0.85);
         }
     }
 
@@ -55,7 +55,7 @@ public class Elevator extends OnOffSubsystem{
         {
             setPower(0);
         } else {
-            setPower(-0.5);
+            setPower(-0.85);
         }
     }
 

@@ -5,6 +5,8 @@ import edu.neu.nutrons.ultimateascent.commands.*;
 import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous_OLD;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOffCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOffCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.Joystick;
@@ -24,34 +26,41 @@ public class OI {
     // Joystick mappings.
     private static final int DRIVE_THROTTLE = 1;
     private static final int DRIVE_WHEEL = 6;
-    private static final int DRIVE_QUICK_TURN = 0;
+    private static final int DRIVE_HIGH_GEAR = 1;
 
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
     private Joystick opPad = new Joystick(1);
     //test
-    private Button centererTest = new JoystickButton(opPad, 1);
+    //private Button centererTest = new JoystickButton(opPad, 1);
 
-    // Control Board Buttons (Needs Testing)
-    private DigitalIOButton intake = new DigitalIOButton(12);
-    private DigitalIOButton spit= new DigitalIOButton(14);
-    private DigitalIOButton shooterLow = new DigitalIOButton(10);
-    private DigitalIOButton shooterHigh = new DigitalIOButton(2);
-    private DigitalIOButton fire = new DigitalIOButton(4);
-    private DigitalIOButton humanLoad = new DigitalIOButton(6);
+    private Button intake = new JoystickButton(opPad, 7);
+    private Button ddIntake = new JoystickButton(opPad, 5);
+    private Button spit = new JoystickButton(opPad, 8);
+    private Button shooterLow = new JoystickButton(opPad, 3);
+    private Button shooterHigh = new JoystickButton(opPad, 4);
+    private Button fire = new JoystickButton(opPad, 6);
+    private Button humanLoad = new JoystickButton(opPad, 1); //TODO: Elevator down
+    private Button hangerUp = new JoystickButton(opPad, 10);
+    private Button hangerDown = new JoystickButton(opPad, 9);
+    private Button deactivateShooter = new JoystickButton(opPad, 2);
 
     public OI() {
         // testing
-        centererTest.whenPressed(new TestCentererCmd(RobotMap.CENTERER_RETRACTED));
+        //centererTest.whenPressed(new TestCentererCmd(RobotMap.CENTERER_RETRACTED));
 
-        // control board
         intake.whenPressed(new ActivateIntakeCmd());
         intake.whenReleased(new DeactivateIntakeCmd());
+        ddIntake.whenPressed(new ActivateIntakeDropdownCmd());
+        ddIntake.whenReleased(new DeactivateIntakeCmd());
         spit.whenPressed(new IntakeSpitCmd());
         spit.whenReleased(new DeactivateIntakeCmd());
         shooterLow.whenPressed(new ActivateShooterLowCmd());
         shooterHigh.whenPressed(new ActivateShooterHighCmd());
+        deactivateShooter.whenPressed(new DeactivateShooterCmd());
         fire.whenPressed(new ShooterFireCmd());
         humanLoad.whenPressed(new HumanLoadCmd());
+        hangerUp.whenPressed(new OOTurnOnCmd(CommandBase.climber));
+        hangerDown.whenPressed(new OOTurnOffCmd(CommandBase.climber));
 
     }
 
@@ -106,9 +115,9 @@ public class OI {
         return getIOAnalog(DRIVE_WHEEL);
     }
 
-    public boolean getDriveQuickTurn() throws DriverStationEnhancedIO.EnhancedIOException {
+    public boolean getHighGearButton() {
         // Not in use
-        return getIODigital(DRIVE_QUICK_TURN);
+        return getIODigital(DRIVE_HIGH_GEAR);
     }
 
     // Selects number of frisbees to fire during auto

@@ -21,14 +21,11 @@ public class RobotMap {
 
     // Pneumatics
     public static final int DROPDOWN = 4;
-    public static final int CENTERER = 6;
+    public static final int CENTERER = 2;
     public static final int MAGAZINE = 3;
     public static final int BOLT = 1;
-    public static final int BARREL = 2;
     public static final int CLIMBER = 5;
-    //Barrel Double solenoid -- FILL IN IF WE USE IT
-    public static final int BARREL_1 = 2;
-    public static final int BARREL_2 = 2;
+    public static final int SHIFTER = 6;
 
     // Inputes
     public static final int DIGITAL_UP = 3;
@@ -36,7 +33,7 @@ public class RobotMap {
     public static final int AIR_PRESSURE = 5;
     public static final int SHOOTER_ENC_A = 1;
     public static final int SHOOTER_ENC_B = 2;
-     public static final int DRIVE_ENC_A = 6;
+    public static final int DRIVE_ENC_A = 6;
     public static final int DRIVE_ENC_B = 7;
     public static final int GYRO = 1;
 

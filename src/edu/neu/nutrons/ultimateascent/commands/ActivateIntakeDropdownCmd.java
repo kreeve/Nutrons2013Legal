@@ -5,6 +5,7 @@
 package edu.neu.nutrons.ultimateascent.commands;
 
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOffCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -21,6 +22,6 @@ public class ActivateIntakeDropdownCmd extends CommandGroup {
     public ActivateIntakeDropdownCmd() {
         addSequential(new ActivateIntakeCmd());
         addSequential(new OOSetOnCmd(CommandBase.ddRoller));
-        addSequential(new OOTurnOnCmd(CommandBase.dropdown));
+        addSequential(new OOTurnOffCmd(CommandBase.dropdown));
     }
 }

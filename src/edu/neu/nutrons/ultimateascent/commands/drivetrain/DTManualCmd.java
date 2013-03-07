@@ -22,6 +22,7 @@ public class DTManualCmd extends CommandBase {
 
     protected void execute() {
         dt.driveLR(oi.getDriveLeft(),oi.getDriveRight());
+        dt.setHighGear(oi.getHighGearButton());
     }
 
     protected boolean isFinished() {

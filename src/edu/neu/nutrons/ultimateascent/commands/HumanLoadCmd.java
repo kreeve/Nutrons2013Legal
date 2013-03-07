@@ -5,6 +5,7 @@
 package edu.neu.nutrons.ultimateascent.commands;
 
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOffCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOffCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -16,7 +17,7 @@ public class HumanLoadCmd extends CommandGroup {
 
     public HumanLoadCmd() {
         //Added set off for shooter because it wasn't there before
-        // >_<
+        addSequential(new OOTurnOffCmd(CommandBase.elevator));
         addSequential(new OOSetOffCmd(CommandBase.shooter));
         addSequential(new OOTurnOnCmd(CommandBase.magazine));
     }

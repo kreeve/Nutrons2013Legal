@@ -22,8 +22,8 @@ public class Shooter extends OnOffSubsystem {
 
     private Talon sMotor1 = new Talon(RobotMap.SHOOTER_1);
     private Talon sMotor2 = new Talon(RobotMap.SHOOTER_2);
-    private Encoder enc = new Encoder(RobotMap.SHOOTER_ENC_A, RobotMap.SHOOTER_ENC_B);
-    private Counter speed = new Counter(RobotMap.SHOOTER_ENC_A);
+    //private Encoder enc = new Encoder(RobotMap.SHOOTER_ENC_A, RobotMap.SHOOTER_ENC_B);
+    //private Counter speed = new Counter(RobotMap.SHOOTER_ENC_A);
     private DebouncedBoolean spinUpTime = new DebouncedBoolean(500);
     private final double SHOOTER_POWER = 1.0;
 
@@ -63,7 +63,7 @@ public class Shooter extends OnOffSubsystem {
 
         // "Counter" method
        // return speed.getPeriod();
-        return enc.getRate();
+        return 0;
 
     }
 }

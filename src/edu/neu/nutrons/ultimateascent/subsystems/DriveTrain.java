@@ -6,6 +6,7 @@ import edu.neu.nutrons.ultimateascent.RobotMap;
 import edu.neu.nutrons.ultimateascent.commands.drivetrain.DTManualCmd;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -23,6 +24,7 @@ public class DriveTrain extends Subsystem {
     private Talon leftMotor2 = new Talon(RobotMap.DRIVE_LEFT_MOTOR_2);
     private Talon rightMotor1 = new Talon(RobotMap.DRIVE_RIGHT_MOTOR_1);
     private Talon rightMotor2 = new Talon(RobotMap.DRIVE_RIGHT_MOTOR_2);
+    private Solenoid shifter = new Solenoid(RobotMap.SHIFTER);
 
     private Encoder enc = new Encoder(RobotMap.DRIVE_ENC_A, RobotMap.DRIVE_ENC_B);
     private Gyro gyro = new Gyro(RobotMap.GYRO);
@@ -99,5 +101,9 @@ public class DriveTrain extends Subsystem {
     }
     public void stop() {
         driveLR(0, 0);
+    }
+
+    public void setHighGear(boolean gear) {
+        shifter.set(gear);
     }
 }
