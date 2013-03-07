@@ -8,11 +8,13 @@
 package edu.neu.nutrons.ultimateascent;
 
 
+import com.team254.lib.util.ThrottledPrinter;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.neu.nutrons.ultimateascent.commands.CommandBase;
+import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous;
 import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous_OLD;
 import edu.neu.nutrons.ultimateascent.commands.drivetrain.DTManualCmd;
 import edu.wpi.first.wpilibj.Compressor;
@@ -30,6 +32,7 @@ public class Nutrons2013Legal extends IterativeRobot {
     private Command autonomousCommand;
     private int autonomousMode = Autonomous_OLD.NONE;
     private Compressor comp = new Compressor(RobotMap.AIR_PRESSURE, RobotMap.COMPRESSOR_PORT);
+    ThrottledPrinter p = new ThrottledPrinter(.1);
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -53,7 +56,7 @@ public class Nutrons2013Legal extends IterativeRobot {
 
     public void autonomousInit()
     {
-        autonomousCommand = new Autonomous_OLD(autonomousMode);
+        autonomousCommand = new Autonomous(autonomousMode);
         // schedule the autonomous command (example)
         autonomousCommand.start();
     }
@@ -86,6 +89,7 @@ public class Nutrons2013Legal extends IterativeRobot {
     public void teleopPeriodic() {
         CommandBase.handleSubsystems();
         Scheduler.getInstance().run();
+        p.println("Enc: " + CommandBase.dt.getEncoderDistance() + " g: " + CommandBase.dt.getGyroValue());
     }
 
     /**

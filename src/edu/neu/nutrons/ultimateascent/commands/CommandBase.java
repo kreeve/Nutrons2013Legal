@@ -55,8 +55,8 @@ public abstract class CommandBase extends Command {
         shooter.exec();
         intake.exec();
         centerer.exec();
-        System.out.println("ele " + stateStr(elevator) + "  mag " + stateStr(magazine)
-                + "  dro " + stateStr(dropdown) + " enc rate: " + shooter.getRate());
+       // System.out.println("ele " + stateStr(elevator) + "  mag " + stateStr(magazine)
+         //       + "  dro " + stateStr(dropdown) + " enc rate: " + shooter.getRate());
     }
 
     public static void init() {

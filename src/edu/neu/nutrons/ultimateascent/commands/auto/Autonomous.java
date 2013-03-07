@@ -32,7 +32,7 @@ public class Autonomous extends CommandGroup {
     public Autonomous(int mode) {
         //Changed fron SetOn to TurnON because there was no delay
         addSequential(new OOTurnOnCmd(CommandBase.shooter));
-        addSequential(new WaitCommand(2000));
+        addSequential(new WaitCommand(3));
         addSequential(new ShooterFireCmd());
         addSequential(new ShooterFireCmd());
         addSequential(new ShooterFireCmd());

@@ -97,7 +97,7 @@ public class DriveTrain extends Subsystem {
         public int getEncoderValue() {
         return enc.get();
     }
-        
+
     public double getEncoderDistance() {
       return enc.getDistance();
     }
@@ -110,9 +110,9 @@ public class DriveTrain extends Subsystem {
     }
 
     public void setHighGear(boolean gear) {
-        shifter.set(gear);
+        shifter.set(!gear);
     }
-    
+
     public void resetEncoder() {
       enc.reset();
     }

@@ -65,7 +65,7 @@ public class Elevator extends OnOffSubsystem{
 
     public boolean isDown()
     {
-        System.out.println("DOWN: " + !downLimit.get());
+        //System.out.println("DOWN: " + !downLimit.get());
         return !downLimit.get();
     }
 
