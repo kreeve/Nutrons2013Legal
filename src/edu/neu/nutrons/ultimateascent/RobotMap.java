@@ -27,7 +27,7 @@ public class RobotMap {
     public static final int CLIMBER = 5;
     public static final int SHIFTER = 6;
 
-    // Inputes
+    // Inputs
     public static final int DIGITAL_UP = 3;
     public static final int DIGITAL_DOWN = 4;
     public static final int AIR_PRESSURE = 5;
@@ -36,6 +36,7 @@ public class RobotMap {
     public static final int DRIVE_ENC_A = 6;
     public static final int DRIVE_ENC_B = 7;
     public static final int GYRO = 1;
+    public static final int POT = 3;
 
     public static final boolean CENTERER_RETRACTED = false;
 }

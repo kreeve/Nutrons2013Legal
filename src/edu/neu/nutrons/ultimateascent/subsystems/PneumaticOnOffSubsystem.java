@@ -31,10 +31,12 @@ public class PneumaticOnOffSubsystem extends OnOffSubsystem {
 
     protected void initOn() {
         piston.set(onState);
+
     }
 
     protected void initOff() {
         piston.set(!onState);
+
     }
 
     protected void execOn() {
@@ -53,5 +55,9 @@ public class PneumaticOnOffSubsystem extends OnOffSubsystem {
 
     public boolean isOff() {
         return delayOff.get();
+    }
+    public boolean goalState()
+    {
+        return piston.get() && onState;
     }
 }

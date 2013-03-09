@@ -1,5 +1,5 @@
 /*
- * Reloadble constants 
+ * Reloadble constants
  */
 package edu.neu.nutrons.ultimateascent;
 
@@ -16,4 +16,10 @@ public class Constants extends ConstantsBase {
   public static Constant turnKP = new Constant("turnKP", 0);
   public static Constant turnKI = new Constant("turnKI", 0);
   public static Constant turnKD = new Constant("turnKD", 0);
+  public static Constant elevatorKP = new Constant("elevatorKP", 1);
+  public static Constant elevatorKI = new Constant("elevatorKI", 0);
+  public static Constant elevatorKD = new Constant("elevatorKD", 0);
+  public static Constant humanLoadHeight = new Constant("humanLoadHeight", 0.5);
+
+
 }

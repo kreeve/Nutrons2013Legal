@@ -8,6 +8,8 @@
 package edu.neu.nutrons.ultimateascent;
 
 
+import com.team254.lib.control.ControlUpdater;
+import com.team254.lib.util.ConstantsBase;
 import com.team254.lib.util.ThrottledPrinter;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -19,6 +21,7 @@ import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous_OLD;
 import edu.neu.nutrons.ultimateascent.commands.drivetrain.DTManualCmd;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStationLCD;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,7 +33,7 @@ import edu.wpi.first.wpilibj.DriverStationLCD;
 public class Nutrons2013Legal extends IterativeRobot {
 
     private Command autonomousCommand;
-    private int autonomousMode = Autonomous_OLD.NONE;
+    private int autonomousMode = Autonomous.THREE_DISC;
     private Compressor comp = new Compressor(RobotMap.AIR_PRESSURE, RobotMap.COMPRESSOR_PORT);
     ThrottledPrinter p = new ThrottledPrinter(.1);
     /**
@@ -41,21 +44,32 @@ public class Nutrons2013Legal extends IterativeRobot {
        // comp.start();
         // Initialize all subsystems
         CommandBase.init();
-        autonomousCommand = new Autonomous_OLD(Autonomous_OLD.THREE_DISC);
+        //ControlUpdater.getInstance().start();
+        autonomousCommand = new Autonomous(Autonomous.THREE_DISC);
+        CommandBase.elevator.resetPot();
+        showAutoMode();
     }
 
+    public void showAutoMode() {
+        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1,
+            "Auto: " + autonomousMode + "             ");
+        DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser1, 1,
+               "" + Timer.getFPGATimestamp());
+        DriverStationLCD.getInstance().updateLCD();
+        System.out.println("Auto: " + autonomousMode);
+    }
     public void disabledPeriodic() {
         int oiAutoMode = CommandBase.oi.getAutoMode();
-        if(oiAutoMode != Autonomous_OLD.NONE && oiAutoMode != autonomousMode) {
+        if(oiAutoMode != Autonomous.NONE && oiAutoMode != autonomousMode) {
             autonomousMode = oiAutoMode;
-            DriverStationLCD.getInstance().println(DriverStationLCD.Line.kUser2, 1,
-                    "Auto: " + autonomousMode + "             ");
-            System.out.println("Auto: " + autonomousMode);
+            showAutoMode();
         }
+        //        p.println("Enc: " + CommandBase.dt.getEncoderDistance()  + " p "
+          //      + CommandBase.elevator.getPotVal() + " g: "
+            //    + CommandBase.dt.getGyroValue());
     }
 
-    public void autonomousInit()
-    {
+    public void autonomousInit() {
         autonomousCommand = new Autonomous(autonomousMode);
         // schedule the autonomous command (example)
         autonomousCommand.start();
@@ -89,7 +103,9 @@ public class Nutrons2013Legal extends IterativeRobot {
     public void teleopPeriodic() {
         CommandBase.handleSubsystems();
         Scheduler.getInstance().run();
-        p.println("Enc: " + CommandBase.dt.getEncoderDistance() + " g: " + CommandBase.dt.getGyroValue());
+     //  p.println("Enc: " + CommandBase.dt.getEncoderDistance()  + " p "
+       //         + CommandBase.elevator.getPotVal() + " g: "
+         //       + CommandBase.dt.getGyroValue());
     }
 
     /**
@@ -104,5 +120,7 @@ public class Nutrons2013Legal extends IterativeRobot {
         // NOTE: NO LONGER NEEDED BARREL IN FIXED POSITION
         System.out.println("disabled");
         comp.stop();
+        ConstantsBase.readConstantsFromFile();
+        showAutoMode();
     }
 }

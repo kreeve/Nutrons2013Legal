@@ -30,23 +30,20 @@ public class OI {
 
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
     private Joystick opPad = new Joystick(1);
-    //test
-    //private Button centererTest = new JoystickButton(opPad, 1);
 
+    // Buttons.
     private Button intake = new JoystickButton(opPad, 7);
     private Button ddIntake = new JoystickButton(opPad, 5);
     private Button spit = new JoystickButton(opPad, 8);
     private Button shooterLow = new JoystickButton(opPad, 3);
     private Button shooterHigh = new JoystickButton(opPad, 4);
     private Button fire = new JoystickButton(opPad, 6);
-    private Button humanLoad = new JoystickButton(opPad, 1); //TODO: Elevator down
+    private Button humanLoad = new JoystickButton(opPad, 1);
     private Button hangerUp = new JoystickButton(opPad, 10);
     private Button hangerDown = new JoystickButton(opPad, 9);
     private Button deactivateShooter = new JoystickButton(opPad, 2);
 
     public OI() {
-        // testing
-        //centererTest.whenPressed(new TestCentererCmd(RobotMap.CENTERER_RETRACTED));
 
         intake.whenPressed(new ActivateIntakeCmd());
         intake.whenReleased(new DeactivateIntakeCmd());
