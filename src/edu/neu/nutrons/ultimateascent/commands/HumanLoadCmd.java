@@ -4,7 +4,6 @@
  */
 package edu.neu.nutrons.ultimateascent.commands;
 
-import edu.neu.nutrons.ultimateascent.Constants;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOffCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOffCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
@@ -18,8 +17,6 @@ public class HumanLoadCmd extends CommandGroup {
 
     public HumanLoadCmd() {
         //Added set off for shooter because it wasn't there before
-       // addSequential(new OOTurnOffCmd(CommandBase.elevator));
-        //addSequential(new SetElevatorPositionCmd(Constants.humanLoadHeight.getDouble()));
         addSequential(new OOTurnOffCmd(CommandBase.elevator));
         addSequential(new OOSetOffCmd(CommandBase.shooter));
         addSequential(new OOTurnOnCmd(CommandBase.magazine));

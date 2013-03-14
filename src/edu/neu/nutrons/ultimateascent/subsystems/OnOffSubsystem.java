@@ -78,17 +78,4 @@ public abstract class OnOffSubsystem extends Subsystem {
             return isOff();
         }
     }
-
-    public void enableControlLoop() {
-
-    }
-
-    public void disableControlLoop() {
-
-    }
-    public boolean goalState()
-    {
-       return isOn();
-    }
-
 }

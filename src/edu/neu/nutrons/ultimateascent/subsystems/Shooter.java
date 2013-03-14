@@ -4,8 +4,6 @@
  */
 package edu.neu.nutrons.ultimateascent.subsystems;
 
-import com.team254.lib.util.MovingAverageFilter;
-import com.team254.lib.util.ThrottledPrinter;
 import edu.neu.nutrons.lib.DebouncedBoolean;
 import edu.neu.nutrons.lib.Utils;
 import edu.neu.nutrons.ultimateascent.RobotMap;
@@ -28,9 +26,6 @@ public class Shooter extends OnOffSubsystem {
     //private Counter speed = new Counter(RobotMap.SHOOTER_ENC_A);
     private DebouncedBoolean spinUpTime = new DebouncedBoolean(500);
     private final double SHOOTER_POWER = 1.0;
-    private double powerGoal = 0;
-    private MovingAverageFilter filter = new MovingAverageFilter(25);
-        ThrottledPrinter p = new ThrottledPrinter(.1);
 
     private void setPower(double power) {
         // Don't shoot backwards!
@@ -40,24 +35,19 @@ public class Shooter extends OnOffSubsystem {
     }
 
     protected void initOn() {
-        powerGoal = SHOOTER_POWER;
-        updateShooter();
     }
 
     protected void initOff() {
     }
 
-
     protected void execOn() {
         spinUpTime.feed(true);
-        powerGoal = SHOOTER_POWER;
-        updateShooter();
+        setPower(SHOOTER_POWER);
     }
 
     protected void execOff() {
         spinUpTime.feed(false);
-        powerGoal = 0;
-        updateShooter();
+        setPower(0);
     }
 
     public boolean isOn() {
@@ -75,11 +65,5 @@ public class Shooter extends OnOffSubsystem {
        // return speed.getPeriod();
         return 0;
 
-    }
-
-    private void updateShooter() {
-        double out = filter.calculate(powerGoal);
-       // p.println("shooter out " + out);
-        setPower(out);
     }
 }

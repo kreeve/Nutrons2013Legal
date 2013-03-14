@@ -2,7 +2,6 @@
 package edu.neu.nutrons.ultimateascent.commands.drivetrain;
 
 import edu.neu.nutrons.ultimateascent.commands.CommandBase;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
 
 /**
@@ -22,8 +21,6 @@ public class DTManualCmd extends CommandBase {
     }
 
     protected void execute() {
-        if (DriverStation.getInstance().isAutonomous())
-            return;
         dt.driveLR(oi.getDriveLeft(),oi.getDriveRight());
         dt.setHighGear(oi.getHighGearButton());
     }

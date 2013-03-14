@@ -5,7 +5,6 @@
 package edu.neu.nutrons.ultimateascent.commands;
 
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOffCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
@@ -18,35 +17,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * Step 4: Retract motor into barrel before moving
  */
 public class ActivateShooterCmd extends CommandGroup {
-    boolean doIntake = false;
 
-    public void doInit(int centererRuns) {
-        if (!doIntake)
-            addSequential(new DeactivateIntakeCmd());
-       // if(!CommandBase.magazine.goalState())
-      //  {
-            for (int i = 0; i < centererRuns; ++i) {
-                addSequential(new OOTurnOnCmd(CommandBase.centerer));
-                addSequential(new OOTurnOffCmd(CommandBase.centerer));
-            }
-            addSequential(new OOTurnOnCmd(CommandBase.centerer));
-            addSequential(new OOTurnOnCmd(CommandBase.magazine));
-       // }
-
+    public ActivateShooterCmd() {
+        addSequential(new DeactivateIntakeCmd());
+        addSequential(new OOTurnOnCmd(CommandBase.centerer));
         addSequential(new OOSetOnCmd(CommandBase.shooter));
-
-    //}
+        addSequential(new OOTurnOnCmd(CommandBase.magazine));
     }
-    public ActivateShooterCmd()
-    {
-        doInit(2);
-    }
-
-    public ActivateShooterCmd(int n ,boolean doIntake)
-    {
-        doInit(n);
-        this.doIntake = doIntake;
-    }
-
-
 }

@@ -31,7 +31,6 @@ public class OOSetCmd extends CommandBase {
     protected void initialize() {
         legal = CommandBase.law.legalToSet(sys, state);
         if(legal) {
-            sys.disableControlLoop();
             sys.init(state);
         }
     }

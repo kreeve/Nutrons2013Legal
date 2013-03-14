@@ -41,7 +41,6 @@ public class DriveTrain extends Subsystem {
         }
     }
     public void driveLR(double left, double right) {
-        System.out.println(left + " " + right);
         left = Utils.limit(left, -1, 1);
         right = Utils.limit(right, -1, 1);
         leftMotor1.set(-left);
@@ -111,7 +110,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void setHighGear(boolean gear) {
-        shifter.set(gear);
+        shifter.set(!gear);
     }
 
     public void resetEncoder() {
