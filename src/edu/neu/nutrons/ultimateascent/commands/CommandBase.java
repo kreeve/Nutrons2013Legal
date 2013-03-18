@@ -26,7 +26,7 @@ public abstract class CommandBase extends Command {
     public static OnOffSubsystem magazine; // carries frisbees must be retracted to move barrel
     public static OnOffSubsystem bolt; // pushes frisbee into shooter
     public static OnOffSubsystem climber; // hooks that extend to climb to first level
-    public static OnOffSubsystem elevator; // elevates the shooter with its related subsystems
+    public static Elevator elevator; // elevates the shooter with its related subsystems
     public static Shooter shooter; // the actual wheels
     public static OnOffSubsystem ddRoller; // motor of the drop down roller
     public static OnOffSubsystem centerer; // centers the frisbees must be retracted to use other subsystems
@@ -68,8 +68,8 @@ public abstract class CommandBase extends Command {
         ddRoller = new DDRoller();
 
         // PneumaticOnOffSubsystems (subsystem, default position, delay)
-        dropdown = new PneumaticOnOffSubsystem(RobotMap.DROPDOWN, true, .5);
-        magazine = new PneumaticOnOffSubsystem(RobotMap.MAGAZINE, false, 1, .5);
+        dropdown = new PneumaticOnOffSubsystem(RobotMap.DROPDOWN, true, .25);
+        magazine = new PneumaticOnOffSubsystem(RobotMap.MAGAZINE, false, 2, 2);
         bolt = new PneumaticOnOffSubsystem(RobotMap.BOLT, true, .25);
         climber = new PneumaticOnOffSubsystem(RobotMap.CLIMBER, true, .5);
         centerer = new PneumaticOnOffSubsystem(RobotMap.CENTERER, RobotMap.CENTERER_RETRACTED, 0.5);

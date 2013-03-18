@@ -60,7 +60,8 @@ public class PIDController extends Controller implements IUtility, LiveWindowSen
     }
     lastDeltaError = dError;
     SmartDashboard.putData(this);
-    
+    System.out.println(enabled + " " + error + " " + out);
+
   }
 
   public void setGoal(double goal) {
@@ -68,20 +69,20 @@ public class PIDController extends Controller implements IUtility, LiveWindowSen
     this.goal = goal;
     output.set(0);
   }
-  
+
   public void setGoalRaw(double goal) {
     this.goal = goal;
   }
-  
+
   public double getGoal() {
     return this.goal;
   }
-  
+
   void setErrorBounds(double onTargetError, double onTargetDeltaError) {
     this.onTargetDeltaError = onTargetDeltaError;
     this.onTargetError = onTargetError;
   }
-  
+
   void setMinI(double minI) {
     this.minIError = minI;
   }
@@ -141,7 +142,7 @@ public class PIDController extends Controller implements IUtility, LiveWindowSen
 
   public void startLiveWindowMode() {
     disable();
-  } 
+  }
 
   public void stopLiveWindowMode() {
   }

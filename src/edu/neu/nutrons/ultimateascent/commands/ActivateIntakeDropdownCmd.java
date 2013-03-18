@@ -22,6 +22,6 @@ public class ActivateIntakeDropdownCmd extends CommandGroup {
     public ActivateIntakeDropdownCmd() {
         addSequential(new ActivateIntakeCmd());
         addSequential(new OOSetOnCmd(CommandBase.ddRoller));
-        addSequential(new OOTurnOffCmd(CommandBase.dropdown));
+        addSequential(new OOTurnOnCmd(CommandBase.dropdown));
     }
 }
