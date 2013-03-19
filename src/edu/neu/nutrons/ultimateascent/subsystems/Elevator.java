@@ -137,11 +137,16 @@ public class Elevator extends OnOffSubsystem{
     }
 
     public void setPosition(double position) {
-        enableControlLoop();
+        //enableControlLoop();
         controller.setGoal(position);
         System.out.println("Goal: " + controller.getGoal() + " scaled goal: " + controller.getGoal()*potScale);
+        
     }
-
+    public void updateControlLoop()
+    {
+        if(!controller.isEnabled()) return;
+        controller.update();
+    }
     public double getPotVal() {
         return (pot.getValue() - elevatorDownPos) * potScale;
     }

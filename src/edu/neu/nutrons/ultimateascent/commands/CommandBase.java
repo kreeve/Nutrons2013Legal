@@ -51,7 +51,10 @@ public abstract class CommandBase extends Command {
         bolt.exec();
         climber.exec();
         ddRoller.exec();
+        
         elevator.exec();
+        elevator.updateControlLoop(); // Makes sure to update elevator control 
+                                      // if we're trying to control its position.
         shooter.exec();
         intake.exec();
         centerer.exec();
