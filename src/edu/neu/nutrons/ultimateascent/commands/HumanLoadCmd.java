@@ -19,8 +19,9 @@ public class HumanLoadCmd extends CommandGroup {
     public HumanLoadCmd() {
         //Added set off for shooter because it wasn't there before
        // addSequential(new OOTurnOffCmd(CommandBase.elevator));
-        //addSequential(new SetElevatorPositionCmd(Constants.humanLoadHeight.getDouble()));
-        addSequential(new OOTurnOffCmd(CommandBase.elevator));
+        addSequential(new SetElevatorPositionCmd(Constants.humanLoadHeight.getDouble()));
+        //TODO : Tune/test
+        //addSequential(new OOTurnOffCmd(CommandBase.elevator));
         addSequential(new OOSetOffCmd(CommandBase.shooter));
         addSequential(new OOTurnOnCmd(CommandBase.magazine));
     }
