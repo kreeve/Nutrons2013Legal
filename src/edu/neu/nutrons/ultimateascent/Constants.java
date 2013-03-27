@@ -20,6 +20,8 @@ public class Constants extends ConstantsBase {
   public static Constant elevatorKI = new Constant("elevatorKI", 0);
   public static Constant elevatorKD = new Constant("elevatorKD", 0);
   public static Constant humanLoadHeight = new Constant("humanLoadHeight", 0.5);
-
-
+  public static Constant profiledDriveKP = new Constant("profiledDriveKP", 0);
+  public static Constant profiledDriveKI = new Constant("profiledDriveKI", 0);
+  public static Constant profiledDriveKD = new Constant("profiledDriveKD", 0);
+  public static Constant profiledDriveKF = new Constant("profileDriveKF", 0);
 }
