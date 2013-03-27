@@ -29,7 +29,8 @@ public class Autonomous extends CommandGroup {
     private static double DIST_X_FIVE_DISC = 4;
     private static double DIST_X_SEVEN_DISC = 10;
     public Autonomous(int mode) {
-        if (mode == NONE)
+        double timeBetweenShots = 0.75;
+        if(mode == NONE)
             return;
         //Changed fron SetOn to TurnON because there was no delay
         addSequential(new ShiftCmd(false));
@@ -37,40 +38,63 @@ public class Autonomous extends CommandGroup {
         addSequential(new OOSetOnCmd(CommandBase.shooter));
         addSequential(new WaitCommand(2.5));
         addSequential(new ShooterFireCmd());
-        addSequential(new WaitCommand(.75));
+        addSequential(new WaitCommand(timeBetweenShots));
         addSequential(new ShooterFireCmd());
-        addSequential(new WaitCommand(.75));
+        addSequential(new WaitCommand(timeBetweenShots));
         addSequential(new ShooterFireCmd());
-        addSequential(new WaitCommand(.75));
-        addSequential(new ShooterFireCmd());
-        addSequential(new WaitCommand(.75));
-        addSequential(new ShooterFireCmd());
+        if(mode == THREE_DISC) {
+            // Just in case.
+            addSequential(new WaitCommand(timeBetweenShots));
+            addSequential(new ShooterFireCmd());
+            addSequential(new WaitCommand(timeBetweenShots));
+            addSequential(new ShooterFireCmd());
+        }
         if(mode == FIVE_DISC || mode == SEVEN_DISC) {
+            /* Old. -ziv
             addSequential(new OOSetOffCmd(CommandBase.magazine));
             addSequential(new OOSetOnCmd(CommandBase.dropdown));
             addSequential(new OOSetOnCmd(CommandBase.ddRoller));
             addSequential(new OOSetOnCmd(CommandBase.intake));
-            addSequential(new WaitCommand(1));
+            */
+           // addSequential(new WaitCommand(1) ,m);
              //drive to frisbees under the pyramid
             // Lower intake (and drive a bit?)
+
+            addSequential(new ActivateIntakeDropdownCmd());
+            addSequential(new ResetDriveSensorsCmd());
             if(mode == FIVE_DISC) {
                 // 5-disc auto here.
                 // Drive forward a bit, back up against pyramid, shoot
-                addSequential(new DriveTimeAtSpeedCmd(.45,1.2));
+                /*
+                 * Old driving:
+                addSequential(new DriveTimeTWCmd(.45,0,1.2));
                 addSequential(new WaitCommand(1.25));
-                addSequential(new DriveTimeAtSpeedCmd(-.45, 1.2));
-                addSequential(new ActivateShooterCmd(1, true));
-                //addSequential(new DTDriveMasterCmd(DIST_X_FIVE_DISC, 0, DTSpeed));
+                addSequential(new DriveTimeTWCmd(.45,0,1.2));
+                 */
+                addSequential(new DriveTimeTWCmd(.45,0,1.0));
+                addSequential(new DriveTimeTWCmd(.35,.25,0.2));
+                addSequential(new DriveTimeTWCmd(.45,0,0.25));
+                addSequential(new OOSetOnCmd(CommandBase.shooter));
+                addSequential(new WaitCommand(0.5));
+                addSequential(new DriveTimeAtSpeedAlignedCmd(-.45,0,1.2));
+                //If we ever get it working: addSequential(new DTDriveMasterCmd(DIST_X_FIVE_DISC, 0, DTSpeed));
+
+                addSequential(new ActivateShooterCmd());
+                //If needed:
+                addSequential(new WaitCommand(2.5));
                 addSequential(new ShooterFireCmd());
-                addSequential(new WaitCommand(.75));
+                addSequential(new WaitCommand(timeBetweenShots));
+                addSequential(new ShooterFireCmd());
+                // Just in case.
+                addSequential(new WaitCommand(timeBetweenShots));
                 addSequential(new ShooterFireCmd());
                 addSequential(new DeactivateShooterCmd());
-
+                
 
             } else if (mode == SEVEN_DISC && false) {
                 // 7-disc auto here.
                 // Drive forward a lot, back up against pyramid, shoot.
-                addSequential(new DTDriveMasterCmd(DIST_X_SEVEN_DISC,0,DTSpeed)); // drive to the frisbees closest to alience station
+                addSequential(new DTDriveMasterCmd(DIST_X_SEVEN_DISC, 0,DTSpeed)); // drive to the frisbees closest to alience station
                 addSequential(new DTDriveMasterCmd(-DIST_X_SEVEN_DISC, 0, DTSpeed));
                 addSequential(new ActivateShooterLowCmd());
                 addSequential(new DeactivateShooterCmd());

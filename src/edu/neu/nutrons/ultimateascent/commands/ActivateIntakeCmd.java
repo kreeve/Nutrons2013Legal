@@ -26,7 +26,6 @@ public class ActivateIntakeCmd extends CommandGroup {
     public ActivateIntakeCmd() {
         // This should start intake without having to start shooter.
         addSequential(new DeactivateShooterCmd());
-        addSequential(new OOTurnOnCmd(CommandBase.centerer));
         addSequential(new OOSetOnCmd(CommandBase.intake));
     }
 }

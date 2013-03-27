@@ -29,7 +29,7 @@ public abstract class CommandBase extends Command {
     public static Elevator elevator; // elevates the shooter with its related subsystems
     public static Shooter shooter; // the actual wheels
     public static OnOffSubsystem ddRoller; // motor of the drop down roller
-    public static OnOffSubsystem centerer; // centers the frisbees must be retracted to use other subsystems
+    //public static OnOffSubsystem centerer; // centers the frisbees must be retracted to use other subsystems
 
     public static Lawyer law;
 
@@ -51,13 +51,12 @@ public abstract class CommandBase extends Command {
         bolt.exec();
         climber.exec();
         ddRoller.exec();
-        
+
         elevator.exec();
-        elevator.updateControlLoop(); // Makes sure to update elevator control 
+        elevator.updateControlLoop(); // Makes sure to update elevator control
                                       // if we're trying to control its position.
         shooter.exec();
         intake.exec();
-        centerer.exec();
        // System.out.println("ele " + stateStr(elevator) + "  mag " + stateStr(magazine)
          //       + "  dro " + stateStr(dropdown) + " enc rate: " + shooter.getRate());
     }
@@ -72,10 +71,10 @@ public abstract class CommandBase extends Command {
 
         // PneumaticOnOffSubsystems (subsystem, default position, delay)
         dropdown = new PneumaticOnOffSubsystem(RobotMap.DROPDOWN, true, .25);
-        magazine = new PneumaticOnOffSubsystem(RobotMap.MAGAZINE, false, 2, 2);
+        magazine = new PneumaticOnOffSubsystem(RobotMap.MAGAZINE, false, 1.25, 1.25);
         bolt = new PneumaticOnOffSubsystem(RobotMap.BOLT, true, .25);
         climber = new PneumaticOnOffSubsystem(RobotMap.CLIMBER, true, .5);
-        centerer = new PneumaticOnOffSubsystem(RobotMap.CENTERER, RobotMap.CENTERER_RETRACTED, 0.5);
+        //centerer = new PneumaticOnOffSubsystem(RobotMap.CENTERER, RobotMap.CENTERER_RETRACTED, 0.5);
 
         law = new Lawyer();
 

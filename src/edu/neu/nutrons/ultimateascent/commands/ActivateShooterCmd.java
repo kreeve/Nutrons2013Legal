@@ -21,32 +21,18 @@ public class ActivateShooterCmd extends CommandGroup {
     boolean doIntake = false;
 
     public void doInit(int centererRuns) {
-        if (!doIntake)
-            addSequential(new DeactivateIntakeCmd());
-       // if(!CommandBase.magazine.goalState())
-      //  {
-            for (int i = 0; i < centererRuns; ++i) {
-                addSequential(new OOTurnOnCmd(CommandBase.centerer));
-                addSequential(new OOTurnOffCmd(CommandBase.centerer));
-            }
-            addSequential(new OOTurnOnCmd(CommandBase.centerer));
-            addSequential(new OOTurnOnCmd(CommandBase.magazine));
-       // }
-
+        addSequential(new OOSetOnCmd(CommandBase.magazine));
         addSequential(new OOSetOnCmd(CommandBase.shooter));
-
-    //}
     }
+
     public ActivateShooterCmd()
     {
         doInit(2);
     }
 
-    public ActivateShooterCmd(int n ,boolean doIntake)
+    public ActivateShooterCmd(int n, boolean doIntake)
     {
         doInit(n);
         this.doIntake = doIntake;
     }
-
-
 }

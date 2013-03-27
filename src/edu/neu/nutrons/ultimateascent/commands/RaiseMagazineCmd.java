@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class RaiseMagazineCmd extends CommandGroup {
 
     public RaiseMagazineCmd() {
-        addSequential(new OOTurnOnCmd(CommandBase.centerer));
         addSequential(new OOTurnOnCmd(CommandBase.magazine));
     }
 
