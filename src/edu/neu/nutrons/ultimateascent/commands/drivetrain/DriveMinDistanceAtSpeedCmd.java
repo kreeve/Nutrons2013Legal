@@ -18,6 +18,7 @@ public class DriveMinDistanceAtSpeedCmd extends CommandBase {
     this.distance = distance;
     this.angle = angle;
     setTimeout(timeout);
+    requires(dt);
   }
   protected void initialize() {
     driveController.disable();
@@ -36,7 +37,7 @@ public class DriveMinDistanceAtSpeedCmd extends CommandBase {
     if (goingForward)
       return (dt.getEncoderDistance() > distance) || isTimedOut();
     else
-      return dt.getEncoderDistance() < distance || isTimedOut(); 
+      return dt.getEncoderDistance() < distance || isTimedOut();
   }
 
   protected void end() {
@@ -48,5 +49,5 @@ public class DriveMinDistanceAtSpeedCmd extends CommandBase {
     driveController.disable();
     dt.stop();
   }
-  
+
 }

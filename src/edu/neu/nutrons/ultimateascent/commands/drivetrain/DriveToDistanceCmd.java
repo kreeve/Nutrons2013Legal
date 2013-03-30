@@ -11,12 +11,13 @@ import edu.neu.nutrons.ultimateascent.commands.CommandBase;
  */
 public class DriveToDistanceCmd extends CommandBase {
   double distance, angle, vel;
-  
+
   public DriveToDistanceCmd(double distance, double angle, double vel, double timeout) {
     this.distance = distance;
     this.angle = angle;
     this.vel = vel;
     setTimeout(timeout);
+    requires(dt);
   }
 
   protected void initialize() {
@@ -42,5 +43,5 @@ public class DriveToDistanceCmd extends CommandBase {
     driveController.disable();
     dt.stop();
   }
-  
+
 }

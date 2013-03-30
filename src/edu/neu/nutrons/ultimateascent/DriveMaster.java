@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.neu.nutrons.ultimateascent;
 
 import com.sun.squawk.util.MathUtils;
 import edu.neu.nutrons.lib.Controller;
-import edu.neu.nutrons.lib.PDController;
 import edu.neu.nutrons.lib.Tracker;
 import edu.neu.nutrons.lib.Utils;
 

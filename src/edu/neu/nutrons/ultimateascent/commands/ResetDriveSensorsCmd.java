@@ -1,9 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.neu.nutrons.ultimateascent.commands;
 
+/**
+ *
+ * @author NUTRONs
+ * Resets gyro and encoders.
+ */
 public class ResetDriveSensorsCmd extends CommandBase {
 
     public ResetDriveSensorsCmd() {

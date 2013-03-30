@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.neu.nutrons.ultimateascent.subsystems;
 
 import com.team254.lib.control.ControlOutput;
 import com.team254.lib.control.ControlSource;
 import com.team254.lib.control.PIDGains;
 import com.team254.lib.control.impl.PIDController;
-import com.team254.lib.util.ThrottledPrinter;
 import edu.neu.nutrons.ultimateascent.Constants;
 import edu.neu.nutrons.ultimateascent.RobotMap;
 import edu.wpi.first.wpilibj.AnalogChannel;
@@ -140,7 +135,7 @@ public class Elevator extends OnOffSubsystem{
         //enableControlLoop();
         controller.setGoal(position);
         System.out.println("Goal: " + controller.getGoal() + " scaled goal: " + controller.getGoal()*potScale);
-        
+
     }
     public void updateControlLoop()
     {

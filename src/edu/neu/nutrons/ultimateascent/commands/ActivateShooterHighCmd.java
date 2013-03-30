@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.neu.nutrons.ultimateascent.commands;
 
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
@@ -20,4 +16,5 @@ public class ActivateShooterHighCmd extends CommandGroup {
         addSequential(new ActivateShooterCmd());
         addSequential(new OOTurnOnCmd(CommandBase.elevator));
     }
+
 }

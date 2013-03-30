@@ -4,10 +4,9 @@
  */
 package edu.neu.nutrons.ultimateascent.commands;
 
-import edu.neu.nutrons.ultimateascent.commands.CommandBase;
-import edu.neu.nutrons.ultimateascent.commands.onoff.*;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOffCmd;
+import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -17,8 +16,10 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  * Step 2: Retract bolt
  */
 public class ShooterFireCmd extends CommandGroup {
+    
     public ShooterFireCmd() {
         addSequential(new OOTurnOnCmd(CommandBase.bolt));
         addSequential(new OOTurnOffCmd(CommandBase.bolt));
     }
+
 }

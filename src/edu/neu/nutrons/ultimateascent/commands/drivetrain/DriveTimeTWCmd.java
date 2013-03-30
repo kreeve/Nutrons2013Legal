@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.neu.nutrons.ultimateascent.commands.drivetrain;
 
 /**
@@ -16,6 +12,7 @@ public class DriveTimeTWCmd extends DriveTimeAtSpeedCmd {
     public DriveTimeTWCmd(double throttle, double wheel, double time) {
         super(throttle, time);
         this.wheel = wheel;
+        requires(dt);
     }
 
     public void execute() {

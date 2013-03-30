@@ -2,24 +2,19 @@ package edu.neu.nutrons.ultimateascent;
 
 import edu.neu.nutrons.lib.Utils;
 import edu.neu.nutrons.ultimateascent.commands.*;
-import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous_OLD;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOffCmd;
-import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
+import edu.neu.nutrons.ultimateascent.commands.auto.Autonomous;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOffCmd;
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOTurnOnCmd;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-
-// TESTING CENTERER IN BUTTON 1
 
 public class OI {
 
@@ -31,7 +26,7 @@ public class OI {
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
     private Joystick opPad = new Joystick(1);
 
-    // Buttons.
+    // Operator Buttons.
     private Button intake = new JoystickButton(opPad, 7);
     private Button ddIntake = new JoystickButton(opPad, 5);
     private Button spit = new JoystickButton(opPad, 8);
@@ -44,7 +39,6 @@ public class OI {
     private Button deactivateShooter = new JoystickButton(opPad, 2);
 
     public OI() {
-
         intake.whenPressed(new ActivateIntakeCmd());
         intake.whenReleased(new DeactivateIntakeCmd());
         ddIntake.whenPressed(new ActivateIntakeDropdownCmd());
@@ -58,7 +52,6 @@ public class OI {
         humanLoad.whenPressed(new HumanLoadCmd());
         hangerUp.whenPressed(new OOTurnOnCmd(CommandBase.climber));
         hangerDown.whenPressed(new OOTurnOffCmd(CommandBase.climber));
-
     }
 
     // For elevator testing purposes
@@ -67,7 +60,7 @@ public class OI {
         return -1*opPad.getRawAxis(2);
     }
 
-    // Deadband on joystick
+    // Deadband and Limit on Driver Joystick
     private double capAndBand(double value) {
         value = Utils.deadband(value, .075, -1);
         value = Utils.deadband(value, .15, 0);
@@ -113,20 +106,24 @@ public class OI {
     }
 
     public boolean getHighGearButton() {
-        // Not in use
         return getIODigital(DRIVE_HIGH_GEAR);
     }
 
     // Selects number of frisbees to fire during auto
     public int getAutoMode() {
         if(opPad.getRawButton(2)) {
-            return Autonomous_OLD.THREE_DISC;
+            return Autonomous.THREE_DISC;
         } else if(opPad.getRawButton(3)) {
-            return Autonomous_OLD.FIVE_DISC;
+            return Autonomous.FIVE_DISC;
         } else if(opPad.getRawButton(4)) {
-            return Autonomous_OLD.SEVEN_DISC;
+            return Autonomous.SEVEN_DISC;
+        } else if(opPad.getRawButton(1)) {
+            return Autonomous.THREE_BACK;
+        } else if(opPad.getRawButton(5)) {
+            return Autonomous.SHOOT_FROM_PYRAMID;
         } else {
-            return Autonomous_OLD.NONE;
+            return Autonomous.NONE;
         }
     }
+    
 }

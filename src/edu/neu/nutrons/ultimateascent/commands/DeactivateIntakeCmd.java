@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.neu.nutrons.ultimateascent.commands;
 
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOffCmd;
@@ -23,4 +19,5 @@ public class DeactivateIntakeCmd extends CommandGroup {
         addSequential(new OOSetOffCmd(CommandBase.ddRoller));
         addSequential(new OOTurnOffCmd(CommandBase.dropdown));
     }
+
 }

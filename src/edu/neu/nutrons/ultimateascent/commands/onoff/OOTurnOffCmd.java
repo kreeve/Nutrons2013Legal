@@ -1,4 +1,3 @@
-
 package edu.neu.nutrons.ultimateascent.commands.onoff;
 
 import edu.neu.nutrons.ultimateascent.subsystems.OnOffSubsystem;

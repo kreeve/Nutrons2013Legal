@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.neu.nutrons.ultimateascent.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -16,6 +12,7 @@ public class DriveTimeAtSpeedWiggleCmd extends DriveTimeAtSpeedCmd {
 
     public DriveTimeAtSpeedWiggleCmd(double speed, double time, double frequency) {
         super(speed, time);
+        requires(dt);
         this.frequency = frequency;
     }
 

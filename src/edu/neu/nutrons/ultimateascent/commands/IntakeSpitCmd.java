@@ -1,14 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.neu.nutrons.ultimateascent.commands;
 
 /**
  *
  * @author NUTRONs
  * SPITS INTAKE
- * Reverses intake in case of Frisbee jam
+ * Reverses intake in case of Frisbee jam.
  */
 public class IntakeSpitCmd extends CommandBase {
 

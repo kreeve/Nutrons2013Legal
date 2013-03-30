@@ -7,6 +7,7 @@ package edu.neu.nutrons.ultimateascent;
  * floating around.
  */
 public class RobotMap {
+    
     // Motors
     public static final int DRIVE_LEFT_MOTOR_1 = 9;
     public static final int DRIVE_LEFT_MOTOR_2 = 10;

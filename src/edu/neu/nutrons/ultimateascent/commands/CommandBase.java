@@ -1,13 +1,11 @@
 package edu.neu.nutrons.ultimateascent.commands;
 
-import edu.neu.nutrons.ultimateascent.Lawyer;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.neu.nutrons.ultimateascent.OI;
 import edu.neu.nutrons.ultimateascent.RobotMap;
 import edu.neu.nutrons.ultimateascent.controllers.DriveController;
 import edu.neu.nutrons.ultimateascent.subsystems.*;
-import edu.wpi.first.wpilibj.DriverStationLCD;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -29,9 +27,6 @@ public abstract class CommandBase extends Command {
     public static Elevator elevator; // elevates the shooter with its related subsystems
     public static Shooter shooter; // the actual wheels
     public static OnOffSubsystem ddRoller; // motor of the drop down roller
-    //public static OnOffSubsystem centerer; // centers the frisbees must be retracted to use other subsystems
-
-    public static Lawyer law;
 
     // Returns the state of the subsystem passed in
     private static String stateStr(OnOffSubsystem sys) {
@@ -53,19 +48,20 @@ public abstract class CommandBase extends Command {
         ddRoller.exec();
 
         elevator.exec();
-        elevator.updateControlLoop(); // Makes sure to update elevator control
-                                      // if we're trying to control its position.
+        // Makes sure to update elevator control
+        // if we're trying to control its position.
+        elevator.updateControlLoop();
+
         shooter.exec();
         intake.exec();
-       // System.out.println("ele " + stateStr(elevator) + "  mag " + stateStr(magazine)
-         //       + "  dro " + stateStr(dropdown) + " enc rate: " + shooter.getRate());
+        // System.out.println("ele " + stateStr(elevator) + "  mag " + stateStr(magazine)
+        // + "  dro " + stateStr(dropdown) + " enc rate: " + shooter.getRate());
     }
 
     public static void init() {
         // Non-pneumatic subsystems.
         shooter = new Shooter();
         elevator = new Elevator();
-        System.out.println("ABOUT TO INSTANTIATE");
         intake = new Intake();
         ddRoller = new DDRoller();
 
@@ -74,9 +70,6 @@ public abstract class CommandBase extends Command {
         magazine = new PneumaticOnOffSubsystem(RobotMap.MAGAZINE, false, 1.25, 1.25);
         bolt = new PneumaticOnOffSubsystem(RobotMap.BOLT, true, .25);
         climber = new PneumaticOnOffSubsystem(RobotMap.CLIMBER, true, .5);
-        //centerer = new PneumaticOnOffSubsystem(RobotMap.CENTERER, RobotMap.CENTERER_RETRACTED, 0.5);
-
-        law = new Lawyer();
 
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
@@ -95,4 +88,5 @@ public abstract class CommandBase extends Command {
     public CommandBase() {
         super();
     }
+
 }

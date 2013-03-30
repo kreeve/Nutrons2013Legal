@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.neu.nutrons.ultimateascent.commands.drivetrain;
 
 import edu.neu.nutrons.ultimateascent.commands.CommandBase;
@@ -16,6 +12,7 @@ public class ShiftCmd extends CommandBase {
 
     public ShiftCmd(boolean high) {
         this.high = high;
+        requires(dt);
     }
 
     protected void initialize() {

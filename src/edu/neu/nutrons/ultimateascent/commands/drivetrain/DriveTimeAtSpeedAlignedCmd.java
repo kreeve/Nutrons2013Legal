@@ -16,6 +16,7 @@ public class DriveTimeAtSpeedAlignedCmd extends DriveTimeAtSpeedCmd {
     public DriveTimeAtSpeedAlignedCmd(double speed, double heading, double time) {
         super(speed, time);
         this.heading = heading;
+        requires(dt);
     }
 
     public void execute() {

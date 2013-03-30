@@ -12,7 +12,6 @@ public class OOSetCmd extends CommandBase {
 
     private OnOffSubsystem sys;
     private boolean state;
-    private boolean legal = false;
 
     public OOSetCmd(OnOffSubsystem sys, boolean state) {
         this.sys = sys;
@@ -29,11 +28,8 @@ public class OOSetCmd extends CommandBase {
     }
 
     protected void initialize() {
-        legal = CommandBase.law.legalToSet(sys, state);
-        if(legal) {
-            sys.disableControlLoop();
-            sys.init(state);
-        }
+        sys.disableControlLoop();
+        sys.init(state);
     }
 
     protected void execute() {

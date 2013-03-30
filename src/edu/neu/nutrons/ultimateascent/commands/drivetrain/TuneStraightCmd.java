@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Timer;
  * @author Tom Bottiglieri (tom@team254.com)
  */
 public class TuneStraightCmd extends CommandBase {
-  
+
   Timer t = new Timer();
   double timeout = 4;
   double distance = 2; // feet?
@@ -21,6 +21,7 @@ public class TuneStraightCmd extends CommandBase {
     t.start();
     driveController.disable();
     driveController.setStraightGoal(distance);
+    //requires(dt);
   }
 
   protected void execute() {
@@ -42,5 +43,5 @@ public class TuneStraightCmd extends CommandBase {
   protected void interrupted() {
     driveController.disable();
   }
-  
+
 }

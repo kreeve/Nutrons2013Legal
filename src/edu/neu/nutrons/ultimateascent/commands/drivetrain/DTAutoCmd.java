@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.neu.nutrons.ultimateascent.commands.drivetrain;
 
 import edu.neu.nutrons.ultimateascent.commands.CommandBase;

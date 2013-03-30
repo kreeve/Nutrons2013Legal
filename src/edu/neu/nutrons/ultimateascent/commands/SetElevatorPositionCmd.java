@@ -4,13 +4,13 @@
  */
 package edu.neu.nutrons.ultimateascent.commands;
 
-import edu.neu.nutrons.ultimateascent.subsystems.Elevator;
-
 /**
  *
  * @author NUTRONs
+ * Raises elevator to target position.
  */
 public class SetElevatorPositionCmd extends CommandBase{
+
     double pos;
     public SetElevatorPositionCmd(double pos) {
         this.pos = pos;
@@ -18,7 +18,7 @@ public class SetElevatorPositionCmd extends CommandBase{
     }
     protected void initialize() {
         elevator.enableControlLoop();
-        
+
         elevator.setPosition(pos);
     }
 

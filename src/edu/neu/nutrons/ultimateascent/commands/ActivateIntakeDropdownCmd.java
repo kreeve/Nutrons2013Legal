@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.neu.nutrons.ultimateascent.commands;
 
 import edu.neu.nutrons.ultimateascent.commands.onoff.OOSetOnCmd;
@@ -24,4 +20,5 @@ public class ActivateIntakeDropdownCmd extends CommandGroup {
         addSequential(new OOSetOnCmd(CommandBase.ddRoller));
         addSequential(new OOTurnOnCmd(CommandBase.dropdown));
     }
+    
 }

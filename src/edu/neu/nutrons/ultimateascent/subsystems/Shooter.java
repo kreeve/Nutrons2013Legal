@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.neu.nutrons.ultimateascent.subsystems;
 
 import com.team254.lib.util.MovingAverageFilter;
@@ -9,8 +5,6 @@ import com.team254.lib.util.ThrottledPrinter;
 import edu.neu.nutrons.lib.DebouncedBoolean;
 import edu.neu.nutrons.lib.Utils;
 import edu.neu.nutrons.ultimateascent.RobotMap;
-import edu.wpi.first.wpilibj.Counter;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 
 /**

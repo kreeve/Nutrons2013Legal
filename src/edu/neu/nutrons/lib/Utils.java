@@ -2,7 +2,7 @@ package edu.neu.nutrons.lib;
 
 /**
  *
- * @author John
+ * @author NUTRONs
  */
 public class Utils {
 
@@ -16,7 +16,9 @@ public class Utils {
         return Math.max(Math.min(x, max), min);
     }
 
+    // Finds the distance between two cartesian coordinates
     public static double distance(double x1, double y1, double x2, double y2) {
         return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
     }
+    
 }

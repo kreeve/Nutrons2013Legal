@@ -1,4 +1,3 @@
-
 package edu.neu.nutrons.ultimateascent.subsystems;
 
 import edu.neu.nutrons.lib.DebouncedBoolean;

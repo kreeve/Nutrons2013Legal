@@ -14,6 +14,7 @@ public class DriveTimeAtSpeedCmd extends CommandBase {
   double speed, angle, distance;
   boolean goingForward = true;
   public DriveTimeAtSpeedCmd(double speed, double timeout) {
+    requires(dt);
     this.speed = speed;
     setTimeout(timeout);
   }

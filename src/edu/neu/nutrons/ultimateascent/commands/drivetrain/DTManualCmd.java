@@ -1,9 +1,7 @@
-
 package edu.neu.nutrons.ultimateascent.commands.drivetrain;
 
 import edu.neu.nutrons.ultimateascent.commands.CommandBase;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
 
 /**
  *
@@ -38,4 +36,5 @@ public class DTManualCmd extends CommandBase {
     protected void interrupted() {
         end();
     }
+    
 }
